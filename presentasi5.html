@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>TEACHING MATERIALS - PRESENTASI</title>
+    <style>
+        html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        }
+
+        body {
+        display: flex;
+        flex-direction: column;
+        background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhmKDSfKI8xscmXePWUf2mXza001DNqvuOaN504lZfHwe9Jy2bjjMcHQHMiygd967Q2VPAnsld3aYmer1LaXRNDgerZmw0p-xCOWWjpuzAVVVqPsrHTXaW7dZDQaR3h-hzpLY2N6vGG_W_XbZqOB4LpJTsak-st6Rzcx98271g_YGtj876pLptKRfY4BGo/w640-h400/bg.jpg");
+        background-size: cover;
+        }
+        ::-webkit-scrollbar {
+             display: none;}
+        .hidden {
+          display: none !important;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 6px;
+        }
+        .slide {
+            display: none;
+            color: #fff;
+        }
+
+        .active {
+            display: block;
+        }
+
+
+        .slide-container {
+            position: relative;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slide img {
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+       .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+            padding: 0 20px; 
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+
+        table td{
+            color: #fff;
+        }
+
+        .text-justify, .col-md-6{
+            color: #fff;
+        }
+       .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+        
+       .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .popup img {
+            width: 250px;
+            height: 280px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+       .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+
+.text-size-controls button{
+    font-size: 8px;
+    color: #fff;
+}
+#materiKolom1 img {
+    width: 100%;
+    height: 330px;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#materiKolom2 img {
+    width: 100%;
+    height: 330px;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #28a745;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#materiKolom1-img,
+#materiKolom2-img {
+    width: 100% !important; 
+    height: auto !important;
+}
+
+#fullImageModal .modal-dialog {
+    max-width: 65%; 
+    width: auto;
+    margin-top: 10vh;
+}
+
+#fullImageModal .modal-body {
+    padding: 0; 
+}
+
+#fullImageModal .modal-body img {
+    width: 100%;
+    height: 560px;
+    border: 1px solid #ddd;
+}
+
+#fullImageModal .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+#fullImageModal .modal-title {
+    color: #007bff;
+    font-weight: bold; 
+}
+
+.center-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.nav-buttons button {
+    cursor: pointer;
+    background-color: #008567;
+    border:none;
+    font-size: 15px;
+    color: white;
+    padding: 8px 15px;
+    margin-top: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease; 
+    }
+
+.nav-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.ad-slide {
+    position: fixed;
+    right: -300px; /* Initially hidden off-screen */
+    top: 25%;
+    width: 180px;
+    height: 180px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: right 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+.ad-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.ad-image {
+    max-width: 100%;
+    margin-left: 10px;
+    height: auto;
+}
+
+.close-ad {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+}
+
+.show-ad {
+    right: 20px;
+}
+
+      @media (max-width: 768px) {
+        html, body {
+            height: auto;
+            display: block;
+        }
+        
+        .main-content {
+            flex: none; 
+        }
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .footer .social-icons a {
+            color: white;
+            font-size: 18px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+       }
+       .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+          }
+        .slide{
+            margin-top:-10px;
+        }
+        .slide h2{
+            font-size: 25px;
+        }
+        .prev, .next {
+          margin-bottom: 40px;
+        }
+        #img1, #img2, #img3, #img4{
+            display: none;
+        }
+
+        .navbar-collapse {
+            display: flex !important;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .navbar-nav {
+            justify-content: center;
+            margin-right: 28px;
+        }
+         #brand, #fullscreenBtn{
+          display: none;
+        }
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbarNav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+             <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <button id="fullscreenBtn" class="btn btn-dark" style="border: none; margin-left: 15px;">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="main5.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi5.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen5.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container slide-container mt-5 pt-5">
+<div class="slide active">
+    <img src="https://c.tenor.com/kMF30Z8_NpUAAAAC/tenor.gif" alt="Slide 1" id="img1">
+    <h2 class="text-center" id="judul1"></h2>
+     <div class="text-size-controls" style="text-align: center; margin-top: 10px;">
+        <button class="btn btn-outline-primary" onclick="changeFontSize('soal1', 1)">
+            <i class="fas fa-plus"></i> Zoom in
+        </button>
+        <button class="btn btn-outline-secondary" onclick="changeFontSize('soal1', -1)">
+            <i class="fas fa-minus"></i> Zoom out
+        </button>
+    </div>
+    <hr class="bg-primary">
+    <b><p class="text-justify" id="soal1"></p></b>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap;" id="imagesContainer"></div>
+    <div class="popup" id="popup" onclick="closePopup()">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <img id="popupImage" src="" alt="Popup Image">
+</div>
+
+
+<form name="google-sheet" action="https://script.google.com/macros/s/AKfycbxCPBFc9Qe36Wj9wVv6FZJXCVTiTbGTgK1IWCo-y00LCVcZq8frduDx7Z7VjA-pdSwa/exec" method="POST" class="form">
+    <input type="hidden" name="source" value="pemantik">
+    <div style="text-align: left; margin-top: 20px;">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" name="Nama" required placeholder="Type your name">
+         </div>
+         <div class="input-group mt-2">
+          <span class="input-group-text"><i class="fa fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="kelas" name="Kelas" required>
+                <option value="">Select class</option>
+            </select>
+         </div>
+        <div class="input-group mt-2">
+          <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
+          <textarea class="form-control" name="Ekspresi" required placeholder="For example: I was happy"></textarea>
+        </div>
+        <button type="submit" name="simpan" class="btn btn-primary" style="margin-top: 12px;">
+            <span id="submitText">Submit</span>
+            <i id="loadingIcon" class="fas fa-spinner fa-spin" style="display:none;"></i>
+        </button>
+        <a type="button" id="voiceButton" class="btn btn-secondary" style="margin-top: 12px;" onclick="toggleVoice()">
+            <i class="fas fa-volume-down" id="voiceIcon"></i>
+        </a>
+    </div>
+</form>
+<div class="nav-buttons center-buttons">
+        <button class="next" onclick="changeSlide(1)">Next &#10095;</button>
+    </div>
+</div>
+
+
+
+<div class="slide">
+    <img src="https://media.tenor.com/xNa3nuBUOK8AAAAi/demorcracyrising-divide.gif" alt="Slide 2" id="img2">
+    <h2 class="text-center" id="judul2"></h2>
+     <div class="text-size-controls" style="text-align: center; margin-top: 10px;">
+        <button class="btn btn-outline-primary" onclick="changeFontSize('tujuanPembelajaranTable', 1)">
+            <i class="fas fa-plus"></i> Zoom in
+        </button>
+        <button class="btn btn-outline-secondary" onclick="changeFontSize('tujuanPembelajaranTable', -1)">
+            <i class="fas fa-minus"></i> Zoom out
+        </button>
+    </div>
+    <hr class="bg-primary">
+    <table id="tujuanPembelajaranTable" class="table table-bordered mt-4">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Tujuan Pembelajaran</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div class="nav-buttons">
+        <button class="prev" onclick="changeSlide(-1)">&#10094; Prev</button>
+        <button class="next" onclick="changeSlide(1)">Next &#10095;</button>
+    </div>
+</div>
+
+
+<div class="slide">
+    <img src="https://media.tenor.com/D4KlVW7bMXIAAAAj/closed-minded-leaders-shouldnt-open-schools-keep-schools-closed.gif" alt="Slide 3" id="img3">
+    <h2 class="text-center" id="judul3"></h2>
+     <div class="text-size-controls" style="text-align: center; margin-top: 10px;">
+        <button class="btn btn-outline-primary" onclick="changeFontSize('motivasiTable', 1)">
+            <i class="fas fa-plus"></i> Zoom in
+        </button>
+        <button class="btn btn-outline-secondary" onclick="changeFontSize('motivasiTable', -1)">
+            <i class="fas fa-minus"></i> Zoom out
+        </button>
+    </div>
+     <hr class="bg-primary">
+     <table id="motivasiTable" class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>No.</th>
+                <th>Motivasi dan Manfaat</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div class="nav-buttons">
+        <button class="prev" onclick="changeSlide(-1)">&#10094; Prev</button>
+        <button class="next" onclick="changeSlide(1)">Next &#10095;</button>
+    </div>
+</div>
+
+
+ <div class="slide">
+        <img src="https://c.tenor.com/CET7_oDPD5MAAAAC/tenor.gif" alt="Slide 4" id="img4" class="img-fluid">
+        <h2 class="text-center" id="judul4"></h2>
+     <div class="text-size-controls" style="text-align: center; margin-top: 10px;">
+        <button class="btn btn-outline-primary" onclick="changeFontSize('materi', 1)">
+            <i class="fas fa-plus"></i> Zoom in
+        </button>
+        <button class="btn btn-outline-secondary" onclick="changeFontSize('materi', -1)">
+            <i class="fas fa-minus"></i> Zoom out
+        </button>
+      </div>
+        <hr class="bg-primary">
+        <div class="row" id="materi">
+       
+       <div class="col-md-6">
+            <div id="materiKolom1" class="text-justify"></div> 
+        </div>
+        
+        <div class="col-md-6">
+            <div id="materiKolom2" class="text-justify"></div>
+        </div>
+        <div class="nav-buttons center-buttons">
+        <button class="prev" onclick="changeSlide(-1)">&#10094; Prev</button>
+      </div>
+    </div> 
+</div>
+</div>
+
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fullImageModal" tabindex="-1" aria-labelledby="fullImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fullImageModalLabel">Gambar Penuh</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <img id="fullImage" src="" alt="Gambar Penuh" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("contextmenu", function(event) {
+   event.preventDefault();
+});
+function changeFontSize(elementId, change) {
+    const element = document.getElementById(elementId);
+    const style = window.getComputedStyle(element, null).getPropertyValue('font-size');
+    const currentSize = parseFloat(style);
+    element.style.fontSize = (currentSize + change) + 'px';
+}
+const API_KEY = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+const SHEET_ID = '1iHOT12n9ecXe1lxe5tfnJEi29-H-dINmbDjqjhr5gH8';
+async function fetchData(range) {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.values;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+    }
+}
+
+const RANGE_TUJUAN_PEMBELAJARAN = 'Presentasi!B2';
+const RANGE_TUJUAN_DATA = 'Presentasi!A3:B';
+
+async function fetchTujuanPembelajaran() {
+    try {
+        const responseTujuanPembelajaran = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_TUJUAN_PEMBELAJARAN}?key=${API_KEY}`);
+        const dataTujuanPembelajaran = await responseTujuanPembelajaran.json();
+        const tujuanPembelajaran = dataTujuanPembelajaran.values ? dataTujuanPembelajaran.values[0][0] : 'Tujuan Pembelajaran Tidak Ditemukan';
+        document.getElementById('judul2').textContent = `${tujuanPembelajaran}`;
+        const thTujuanPembelajaran = document.querySelector('#tujuanPembelajaranTable th:nth-child(2)');
+        thTujuanPembelajaran.textContent = tujuanPembelajaran;
+        const tujuanData = await fetchData(RANGE_TUJUAN_DATA);
+        if (tujuanData) {
+            displayTujuanPembelajaran(tujuanData);
+        }
+    } catch (error) {
+        console.error('Error fetching tujuan pembelajaran:', error);
+    }
+}
+
+function displayTujuanPembelajaran(tujuanPembelajaran) {
+    const tableBody = document.querySelector('#tujuanPembelajaranTable tbody');
+    tableBody.innerHTML = '';
+    if (tujuanPembelajaran && tujuanPembelajaran.length > 0) {
+        tujuanPembelajaran.forEach((row, index) => {
+            const tr = document.createElement('tr');
+            const tdNo = document.createElement('td');
+            const tdTujuan = document.createElement('td');
+
+            tdNo.textContent = index + 1;
+            tdTujuan.innerHTML = row[1];
+            tr.appendChild(tdNo);
+            tr.appendChild(tdTujuan);
+            tableBody.appendChild(tr);
+        });
+    }
+}
+
+
+const RANGE_JUDUL_PEMANTIK = 'Presentasi!D2'; 
+const RANGE_SOAL_PEMANTIK = 'Presentasi!D3:E'; 
+async function fetchJudulPemantik() {
+    try {
+        const responseJudulPemantik = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_JUDUL_PEMANTIK}?key=${API_KEY}`);
+        const dataJudulPemantik = await responseJudulPemantik.json();
+        const judulPemantik = dataJudulPemantik.values ? dataJudulPemantik.values[0][0] : 'Judul Pemantik Tidak Ditemukan';
+        document.getElementById('judul1').textContent = `${judulPemantik}`;
+    } catch (error) {
+        console.error('Error fetching judul pemantik:', error);
+    }
+}
+
+async function fetchSoalPemantik() {
+    try {
+        const soalPemantik = await fetchData(RANGE_SOAL_PEMANTIK); 
+        if (soalPemantik && soalPemantik.length > 0) {
+            document.getElementById('soal1').textContent = soalPemantik[0][0]; 
+            const imagesContainer = document.getElementById('imagesContainer');
+            imagesContainer.innerHTML = '';  
+            soalPemantik.forEach((row, index) => {
+                if (row[1]) {  
+                    const imgElement = document.createElement('img');
+                    imgElement.src = row[1];
+                    imgElement.alt = `Gambar ${index + 1}`;
+                    imgElement.style.width = '110px';
+                    imgElement.style.height = '130px';
+                    imgElement.style.margin = '10px';
+                    imgElement.onclick = () => openPopup(row[1]); 
+                    imagesContainer.appendChild(imgElement); 
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching soal pemantik:', error);
+    }
+}
+
+
+const RANGE_JUDUL3 = 'Presentasi!G2';
+const RANGE_MOTIVASI = 'Presentasi!G3:H';
+async function fetchJudulDanMotivasi() {
+    try {
+        const responseJudul3 = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_JUDUL3}?key=${API_KEY}`);
+        const dataJudul3 = await responseJudul3.json();
+        const judul3 = dataJudul3.values ? dataJudul3.values[0][0] : 'Judul Tidak Ditemukan';
+
+        document.getElementById('judul3').textContent = `${judul3}`;
+        const thMotivasi = document.querySelector('#motivasiTable th:nth-child(2)');
+        thMotivasi.textContent = judul3;
+        const responseMotivasi = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_MOTIVASI}?key=${API_KEY}`);
+        const dataMotivasi = await responseMotivasi.json();
+        displayMotivasi(dataMotivasi.values);
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+function displayMotivasi(motivasiData) {
+    const tbody = document.querySelector('#motivasiTable tbody');
+    tbody.innerHTML = '';
+
+    if (motivasiData && motivasiData.length > 0) {
+        motivasiData.forEach((row, index) => {
+            const tr = document.createElement('tr');
+            const tdNo = document.createElement('td');
+            tdNo.textContent = index + 1;
+            const tdMotivasi = document.createElement('td');
+            tdMotivasi.innerHTML = row[0];
+            const tdManfaat = document.createElement('td');
+            tdManfaat.innerHTML = row[1] ? row[1] : '';
+            tr.appendChild(tdNo);
+            tr.appendChild(tdMotivasi);
+            tbody.appendChild(tr);
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchTujuanPembelajaran();
+  fetchJudulPemantik();
+  fetchSoalPemantik();
+  fetchJudulDanMotivasi();
+});
+
+
+const RANGE_JUDUL_MATERI = 'Presentasi!I2';
+const RANGE_MATERI = 'Presentasi!I4:J';
+function isYouTubeVideo(id) {
+    return /^[a-zA-Z0-9_-]{11}$/.test(id);
+}
+
+function isImageUrl(url) {
+    return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
+async function fetchMateri() {
+    try {
+        const responseJudulMateri = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_JUDUL_MATERI}?key=${API_KEY}`);
+        const dataJudulMateri = await responseJudulMateri.json();
+        const judulMateri = dataJudulMateri.values ? dataJudulMateri.values[0][0] : 'Judul Materi Tidak Ditemukan';
+        document.getElementById('judul4').innerHTML = judulMateri;
+
+        const responseMateri = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_MATERI}?key=${API_KEY}`);
+        const dataMateri = await responseMateri.json();
+
+        let materiKolom1 = '';
+        let materiKolom2 = '';
+
+        if (dataMateri.values) {
+            dataMateri.values.forEach(row => {
+                const kolom1 = row[0]; 
+                const kolom2 = row[1];
+
+                if (kolom1) {
+                    if (isYouTubeVideo(kolom1)) {
+                        materiKolom1 += `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${kolom1}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    } else if (isImageUrl(kolom1)) {
+                        materiKolom1 += `<img src="${kolom1}" alt="Gambar Materi" class="img-fluid" onclick="showFullImage('${kolom1}')">`;
+                    } else {
+                        materiKolom1 += `<p>${kolom1}</p>`;
+                    }
+                }
+
+                if (kolom2) {
+                    if (isYouTubeVideo(kolom2)) {
+                        materiKolom2 += `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${kolom2}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    } else if (isImageUrl(kolom2)) {
+                        materiKolom2 += `<img src="${kolom2}" alt="Gambar Materi" class="img-fluid" onclick="showFullImage('${kolom2}')">`;
+                    } else {
+                        materiKolom2 += `<p>${kolom2}</p>`;
+                    }
+                }
+            });
+        }
+        document.getElementById('materiKolom1').innerHTML = materiKolom1;
+        document.getElementById('materiKolom2').innerHTML = materiKolom2;
+
+    } catch (error) {
+        console.error('Error fetching materi:', error);
+    }
+}
+
+function showFullImage(imageUrl) {
+    const fullImage = document.getElementById('fullImage');
+    fullImage.src = imageUrl;
+    const imageModal = new bootstrap.Modal(document.getElementById('fullImageModal')); // Perbarui ID modal
+    imageModal.show();
+}
+fetchMateri();
+
+
+async function fetchDropdownData() {
+    const spreadsheetId = '1iHOT12n9ecXe1lxe5tfnJEi29-H-dINmbDjqjhr5gH8'; 
+    const range = 'SoalEvaluasi!C3:C';
+    const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const dropdown = document.getElementById('kelas');
+        if (data.values && data.values.length > 0) {
+            data.values.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item[0]; 
+                option.textContent = item[0]; 
+                dropdown.appendChild(option);
+            });
+        } else {
+            console.error('No data found in the specified range');
+        }
+    } catch (error) {
+        console.error('Error fetching data from Google Sheets:', error);
+    }
+}
+fetchDropdownData();
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxCPBFc9Qe36Wj9wVv6FZJXCVTiTbGTgK1IWCo-y00LCVcZq8frduDx7Z7VjA-pdSwa/exec'
+const form = document.forms['google-sheet']
+
+const submitButton = document.querySelector('button[type="submit"]');
+const submitText = document.getElementById('submitText');
+const loadingIcon = document.getElementById('loadingIcon');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    submitText.style.display = 'none';
+    loadingIcon.style.display = 'inline-block';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: 'Jawaban Anda telah terkirim.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.reload(); 
+            });
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terjadi kesalahan saat mengirim!',
+            });
+        })
+        .finally(() => {
+            submitText.style.display = 'inline';
+            loadingIcon.style.display = 'none';
+        });
+   });
+
+    let isFullscreen = false;
+    const navbar = document.getElementById('navbarNav');
+    const footer = document.getElementById('footer');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            navbar.classList.add('hidden');
+            footer.classList.add('hidden');
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; // Ganti ikon ke "compress"
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari dan Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            navbar.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+
+let currentSlide = 0; 
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = 'none';
+    });
+    slides[index].style.display = 'block';
+
+    currentSlide = index; 
+}
+
+
+function changeSlide(step) {
+    const newSlideIndex = currentSlide + step;
+    if (newSlideIndex >= 0 && newSlideIndex < slides.length) {
+        showSlide(newSlideIndex);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    showSlide(0); 
+});
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowRight') {
+        changeSlide(1);
+    } else if (event.key === 'ArrowLeft') {
+        changeSlide(-1); 
+    }
+});
+
+
+function openPopup(imageSrc) {
+        document.getElementById('popupImage').src = imageSrc;
+        document.getElementById('popup').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+
+let isSpeaking = false;
+function speakText(elementId, button, lang = 'en-US') { 
+    var text = document.getElementById(elementId).innerText;
+    var speech = new SpeechSynthesisUtterance();
+    speech.lang = lang; 
+    speech.text = text;
+
+    var icon = button.querySelector('i');
+
+    if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        icon.classList.remove('fa-volume-up');
+        icon.classList.add('fa-volume-down');
+        isSpeaking = false;
+    } else {
+        icon.classList.remove('fa-volume-down');
+        icon.classList.add('fa-volume-up');
+        window.speechSynthesis.speak(speech);
+        isSpeaking = true;
+
+        speech.onend = function() {
+            icon.classList.remove('fa-volume-up');
+            icon.classList.add('fa-volume-down');
+            isSpeaking = false;
+        };
+    }
+}
+
+
+    function speakInstructions() {
+        const utterance = new SpeechSynthesisUtterance("How did you feel yesterday? For example: I was happy");
+        utterance.onend = function() {
+            document.getElementById('voiceIcon').classList.remove('fa-volume-up');
+            document.getElementById('voiceIcon').classList.add('fa-volume-down');
+            isSpeaking = false; 
+        };
+
+        speechSynthesis.speak(utterance);
+    }
+
+    function stopVoice() {
+        speechSynthesis.cancel(); 
+        isSpeaking = false; 
+        document.getElementById('voiceIcon').classList.remove('fa-volume-up');
+        document.getElementById('voiceIcon').classList.add('fa-volume-down');
+    }
+
+    function toggleVoice() {
+        const voiceIcon = document.getElementById('voiceIcon');
+
+        if (isSpeaking) {
+            stopVoice(); 
+        } else {
+            speakInstructions(); // Start speaking
+            voiceIcon.classList.remove('fa-volume-down'); 
+            voiceIcon.classList.add('fa-volume-up');
+            isSpeaking = true;
+        }
+    }
+
+  function speakInstructions() {
+        var instructions = "Please select one of the images and describe how you felt yesterday in the input field provided. For example, you can say 'I was happy.' After that, click Submit.";
+
+        var speech = new SpeechSynthesisUtterance();
+        speech.lang = 'en-US'; // Bahasa Inggris
+        speech.text = instructions;
+        window.speechSynthesis.speak(speech);
+    }
+
+    function speak(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        speechSynthesis.speak(utterance);
+    }
+
+
+document.getElementById('imageToView').addEventListener('click', function() {
+    var fullImageSrc = this.src;
+    document.getElementById('fullImage').src = fullImageSrc; 
+});
+
+var myModal = new bootstrap.Modal(document.getElementById('fullImageModal'));
+myModal.show();
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

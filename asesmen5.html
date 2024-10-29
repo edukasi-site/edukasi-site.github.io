@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>TEACHING MATERIALS - ASESMEN</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        ::-webkit-scrollbar {
+             display: none;}
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 6px;
+            margin-right: 12px;
+        }
+        
+       .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+            padding: 0 20px; 
+        }
+
+        #authForm {
+            display: none;
+            max-width: 350px;
+            margin-top: 230px;
+            width: 100%;
+            color: #000;
+        }
+        #quizContainer {
+            margin-top: 30px;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+       .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+         .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-down {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-down.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .zoomable-image {
+            transition: transform 0.3s ease;
+        }
+
+        .zoomed {
+            transform: scale(1.8);
+        }
+
+        .form-check-input {
+            width: 1rem; 
+            height: 1rem;
+            transform: scale(1); 
+            margin-right: 10px;
+        }
+
+        .form-check-label {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                height: auto;
+                display: block; 
+            }
+
+            .main-content {
+                flex: none;
+                margin-top: 70px;
+            }
+
+            .main-content h1{
+                font-size: 30px;
+            }
+
+            .footer {
+                position: relative;
+                bottom: 0;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .footer .social-icons a {
+                color: white;
+                font-size: 18px;
+                margin: 0 15px;
+                display: inline-block;
+                transition: color 0.3s ease, transform 0.3s ease;
+            }
+
+            .navbar-collapse {
+                display: flex !important;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .navbar-nav {
+                justify-content: center;
+                margin-right: 25px;
+            }
+            .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+            .modal-body img {
+                width: 100%;
+                height: auto;
+          }
+            #quizContainer {
+             margin-top: 20px;
+             max-width: 1000px;
+             color: #fff;
+             margin-bottom: 30px;
+           }
+           #brand, #fullscreenBtn{
+            display: none;
+          }
+         }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbarNav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+             <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="main5.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi5.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen5.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-content" id="mainContent">
+    <div class="container text-center">
+        <h1 class="mt-4 my-4">ASESMEN</h1>
+        <hr class="bg-primary my-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVBhBjTIb8ZjcCu1g9nOJljvng4WF1D4XX7ovYkCcnJY6TS4S1BE37qJ8PIalvyq1EBLF52lL0-EdlGgmc5uhczg9_rvsilnNh2KYjlIBpuFfUl5C-NWLnNAzP4gTjKR7ifwSZaXHJE6lCap9krpTPcEsoc5ywd08DNDK-VA1YOEwrdcQwYZNlDo_WoaE/w400-h200/kolaborasi.jpg" class="card-img-top" alt="Kolaborasi">
+                    <div class="card-body">
+                        <h5 class="card-title">Kolaborasi</h5>
+                        <p class="card-text">Materi pembelajaran kolaborasi siswa.</p>
+                        <a href="asesmen5_kolaborasi.html" class="btn btn-primary">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Individu -->
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0h8DSTdTf_3dryNm7FPfKRtqRBlM5eRnsOqvXgUkY-dGN_kDZiGwQ8p5_QhzVeEZCN_B20bTtf2TLp09VDBTvD1PnDXAtlOYGam9zjOcvKy3GR6vXrGlOOqPvDpI69EExXZzkzGIlzB7IF11Ca-gZ2-Hzfj0v3G7MoSVNGMOYkli1S9X_MYjJ635a85o/w400-h219/individu.PNG" class="card-img-top" alt="Individu">
+                    <div class="card-body">
+                        <h5 class="card-title">Individu</h5>
+                        <p class="card-text">Panduan belajar individu untuk siswa.</p>
+                        <a href="individu_5.html" class="btn btn-primary">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Refleksi -->
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfcwOWcHdlQPpGfulT-virIUWPKEefojEfPIETTA9zy5BavBNvjuWwrKI7BK2FiHhjZna51zhXeDzJ58pwnQVgXLQR8yN78Puf4E77NYai3PbSt_0dKWrwCbqHfzxrXtQJeGLqjM6lEVpX2rVPApmHhE2xExBRkvnYrmbw-nqKwNvDNIqQoZhP72cj5Q4/w400-h269/evaluasi.jpg" class="card-img-top" alt="Refleksi">
+                    <div class="card-body">
+                        <h5 class="card-title">Evaluasi</h5>
+                        <p class="card-text">Materi penilaian untuk mengukur pemahaman siswa.</p>
+                        <input type="button" id="startQuizBtn" class="btn btn-primary" value="Lihat Detail">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1LeOn3Y_s_iPkhs9eeP6xB5LV46mRFZRCw7ndZVFHLHdnqBMrc9iK8T8-ec4RZwNW6VgScIW4blbGoyB6UfNbqt56Se-1XT3_zCYn9XT-CI2zV1NWA0F_qnhGcWBp-ULPT3K_Mel05oqzjs_uEoRz9WwZuvXBE2mbWNyzCQtyGR1R6gYZNQJGy4Ll4CI/s1600/refleksi.jpg" class="card-img-top" alt="Refleksi">
+                    <div class="card-body">
+                        <h5 class="card-title">Refleksi</h5>
+                        <p class="card-text">Bahan ajar untuk refleksi siswa dan guru.</p>
+                        <a href="refleksi5.html" class="btn btn-primary">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container content">
+    <form id="authForm" class="mb-4 mx-auto">
+        <h1 class="text-center text-white">Login</h1>
+         <hr class="bg-primary">
+        <div class="form-group">
+            <label for="password" class="text-white">Password</label>
+            <input type="password" class="form-control" id="password" required>
+        </div>
+        <button type="submit" id="loginButton" class="btn btn-primary">Login</button>
+        <a href="asesmen5.html" class="btn btn-secondary">Cancel</a>
+        <div id="authMessage" class="mt-3"></div>
+   </form>
+
+    <div id="quizContainer" style="display: none;">
+    <form name="google-sheet" action="https://script.google.com/macros/s/AKfycbxCPBFc9Qe36Wj9wVv6FZJXCVTiTbGTgK1IWCo-y00LCVcZq8frduDx7Z7VjA-pdSwa/exec" method="POST" class="form">
+        <input type="hidden" name="source" value="asesmen">
+        <h1 class="text-center fade-up">Evaluasi</h1>
+        <hr class="bg-primary fade-up">
+        <h4 class="fade-up">A. INFORMATION</h4>
+        <div class="form-group fade-up">
+            <label for="studentName" class="text-white">Student Name</label>
+            <input type="text" class="form-control fade-up" name="Nama" required>
+        </div>
+        <div class="form-group fade-up">
+            <label for="studentClass" class="text-white">Class/Section</label>
+            <select type="text" class="form-control fade-up" id="kelas" name="Kelas" required>
+                <option value="">Select class</option>
+            </select>
+        </div>
+        <h4 class="fade-up">B. QUESTIONS</h4>
+        <div class="form-group" id="questions-container"></div>
+            
+        <a href="asesmen5.html" class="btn btn-secondary fade-up">Cancel</a>
+        <button type="submit" name="simpan" class="btn btn-primary fade-up">
+            <span id="submitText">Submit</span>
+            <i id="loadingIcon" class="fas fa-spinner fa-spin" style="display:none;"></i>
+        </button>
+    </form>
+    <div id="resultMessage" class="mt-3"></div>
+ </div>
+</div>
+<br>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+<script>
+const API_KEY = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+const SHEET_ID = '1iHOT12n9ecXe1lxe5tfnJEi29-H-dINmbDjqjhr5gH8';
+const RANGE = 'SoalEvaluasi!B3:B';
+
+function formatText(text) {
+    const wordsToBold = ['keyword1', 'important', 'highlight'];
+    wordsToBold.forEach(word => {
+        const regex = new RegExp(`\\b(${word})\\b`, 'gi');
+        text = text.replace(regex, '<b>$1</b>');
+    });
+    text = text.replace(/\\n/g, '<br>');
+    return text;
+}
+
+function formatMedia(url) {
+    if (url) {
+        if (url.includes('youtube.com') || url.includes('youtu.be')) {
+            const videoId = url.split('v=')[1]?.split('&')[0];
+            return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        } else if (url.match(/\.(jpeg|jpg|gif|png)$/)) {
+            return `
+                <div class="image-container" style="position: relative;">
+                    <img src="${url}" alt="Image" class="zoomable-image" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+                    <a href="#" class="zoom-icon" onclick="toggleZoom(this)" style="position: absolute; bottom: 10px; right: 10px;color:#fff">
+                        <i class="fas fa-search-plus" style="font-size: 24px;"></i>
+                    </a>
+                </div>
+            `;
+        }
+    }
+    return '';
+}
+
+
+async function fetchQuestions() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const questionsData = data.values;
+
+    const container = document.getElementById('questions-container');
+    
+    let questionIndex = 0;
+    for (let i = 0; i < questionsData.length; i += 7) {
+        questionIndex++;
+        
+        const questionText = questionsData[i][0];
+        const questionMedia = questionsData[i + 6]?.[0];
+        const options = questionsData.slice(i + 1, i + 6);
+        const formattedQuestionText = formatText(questionText);
+
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('form-group', 'fade-up');
+        
+        const questionLabel = document.createElement('label');
+        questionLabel.innerHTML = `<b>${questionIndex}. ${formattedQuestionText}</b>`;
+        questionDiv.appendChild(questionLabel);
+
+        const mediaEmbed = formatMedia(questionMedia);
+        if (mediaEmbed) {
+            const mediaDiv = document.createElement('div');
+            mediaDiv.innerHTML = mediaEmbed;
+            questionDiv.appendChild(mediaDiv);
+        }
+
+        for (let j = 0; j < options.length; j++) {
+            const optionText = options[j][0];
+            if (!optionText) continue;
+            const formattedOptionText = formatText(optionText);
+
+            const optionDiv = document.createElement('div');
+            optionDiv.classList.add('form-check');
+
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.classList.add('form-check-input');
+            input.name = `Answer${questionIndex}`;
+            input.value = formattedOptionText;
+            input.required = true;
+            optionDiv.appendChild(input);
+
+            const label = document.createElement('label');
+            label.classList.add('form-check-label');
+            label.innerHTML = formattedOptionText;
+            optionDiv.appendChild(label);
+
+            const optionMedia = options[j + 4]?.[0];
+            const optionMediaEmbed = formatMedia(optionMedia);
+            if (optionMediaEmbed) {
+                const mediaDiv = document.createElement('div');
+                mediaDiv.innerHTML = optionMediaEmbed;
+                optionDiv.appendChild(mediaDiv);
+            }
+
+            questionDiv.appendChild(optionDiv);
+        }
+
+        container.appendChild(questionDiv);
+    }
+}
+
+window.onload = fetchQuestions;
+
+function toggleZoom(zoomIcon) {
+    const image = zoomIcon.previousElementSibling;
+    image.classList.toggle('zoomed');
+}
+    const authForm = document.getElementById('authForm');
+    const quizForm = document.getElementById('quizForm');
+    const quizContainer = document.getElementById('quizContainer');
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    const authMessage = document.getElementById('authMessage');
+    const navbarNav = document.getElementById('navbarNav');
+    const footer = document.getElementById('footer');
+    const fullscreenBtn = document.getElementById('loginButton');
+    let isFullscreen = false;
+
+     function updateBackgroundColor() {
+        if (document.fullscreenElement) {
+            document.body.style.backgroundColor = "#121212";
+        } else {
+            document.body.style.backgroundColor = "#001f3f";
+        }
+    }
+
+    startQuizBtn.addEventListener('click', function () {
+        mainContent.style.display = "none"; 
+        authForm.style.display = "block"; 
+        startQuizBtn.style.display = "none";
+        navbarNav.style.display = "none";
+        footer.style.display = "none";
+        document.body.style.backgroundColor = "#001f3f";
+    });
+
+
+    function changeColor(selectElement) {
+        if (selectElement.value === "") {
+            selectElement.style.backgroundColor = "#fff2eb"; 
+        } else {
+            selectElement.style.backgroundColor = "#ccffcc"; 
+        }
+    }
+    document.querySelectorAll('select').forEach(function(select) {
+        changeColor(select); 
+    });
+
+
+
+  authForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const enteredPassword = document.getElementById('password').value;
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/1iHOT12n9ecXe1lxe5tfnJEi29-H-dINmbDjqjhr5gH8/values/SoalEvaluasi!B1?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4')
+    .then(response => response.json())
+    .then(function(data) {
+        const sheetPassword = data.values ? data.values[0][0] : '';
+        if (enteredPassword === sheetPassword) {
+            authForm.style.display = "none";
+            quizContainer.style.display = "block";
+            authMessage.innerHTML = "";
+        } else {
+            authMessage.innerHTML = "<div class='alert alert-danger'>Password salah!</div>";
+        }
+    })
+     .catch(function(error) {
+        console.error('Error fetching the password:', error);
+     });
+
+     fetch('https://sheets.googleapis.com/v4/spreadsheets/1iHOT12n9ecXe1lxe5tfnJEi29-H-dINmbDjqjhr5gH8/values/SoalEvaluasi!C3:C?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4')
+        .then(response => response.json())
+        .then(function(data) {
+            const classDropdown = document.getElementById('kelas');
+            const classData = data.values;
+            if (classData && classData.length > 0) {
+                classData.forEach(function(classItem) {
+                    const option = document.createElement('option');
+                    option.value = classItem[0];
+                    option.textContent = classItem[0];
+                    classDropdown.appendChild(option);
+                });
+            } else {
+                console.error('No class data found in the sheet.');
+            }
+        })
+        .catch(function(error) {
+            console.error('Error fetching class data:', error);
+     });
+  });
+
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+        updateBackgroundColor();
+    });
+    document.addEventListener('fullscreenchange', updateBackgroundColor);
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxCPBFc9Qe36Wj9wVv6FZJXCVTiTbGTgK1IWCo-y00LCVcZq8frduDx7Z7VjA-pdSwa/exec'
+const form = document.forms['google-sheet']
+
+const submitButton = document.querySelector('button[type="submit"]');
+const submitText = document.getElementById('submitText');
+const loadingIcon = document.getElementById('loadingIcon');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    submitText.style.display = 'none';
+    loadingIcon.style.display = 'inline-block';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: 'Jawaban Anda telah terkirim.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.reload(); 
+            });
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terjadi kesalahan saat mengirim!',
+            });
+        })
+        .finally(() => {
+            submitText.style.display = 'inline';
+            loadingIcon.style.display = 'none';
+        });
+   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimation() {
+            const fadeElementsUp = document.querySelectorAll('.fade-up');
+            const fadeElementsDown = document.querySelectorAll('.fade-down');
+
+            fadeElementsUp.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+
+            fadeElementsDown.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation();
+    });
+
+document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>

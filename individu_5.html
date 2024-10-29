@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>TEACHING MATERIALS - ASESMEN</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .hidden {
+          display: none !important;
+        }
+        ::-webkit-scrollbar {
+             display: none;}
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 6px;
+            margin-right: 12px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+            padding: 0 20px; 
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Responsif untuk tampilan mobile */
+        @media (max-width: 768px) {
+            html, body {
+                height: auto;
+                display: block; 
+            }
+
+            .main-content {
+                flex: none;
+                margin-top: 70px;
+            }
+
+            .main-content h1{
+                font-size: 30px;
+            }
+
+            .footer {
+                position: relative;
+                bottom: 0;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .footer .social-icons a {
+                color: white;
+                font-size: 18px;
+                margin: 0 15px;
+                display: inline-block;
+                transition: color 0.3s ease, transform 0.3s ease;
+            }
+
+            .navbar-collapse {
+                display: flex !important;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .navbar-nav {
+                justify-content: center;
+                margin-right: 28px;
+            }
+            .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+            .modal-body img {
+                width: 100%;
+                height: auto;
+          }
+            #brand, #fullscreenBtn{
+            display: none;
+           }
+          }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbarNav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+             <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <button id="fullscreenBtn" class="btn btn-dark" style="border: none; margin-left: 15px;">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="main5.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi5.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen5.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="main-content" id="mainContent">
+    <div class="container text-center">
+        <h1 class="mt-4 my-4">Asesmen Individu</h1>
+        <hr class="bg-primary my-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0h8DSTdTf_3dryNm7FPfKRtqRBlM5eRnsOqvXgUkY-dGN_kDZiGwQ8p5_QhzVeEZCN_B20bTtf2TLp09VDBTvD1PnDXAtlOYGam9zjOcvKy3GR6vXrGlOOqPvDpI69EExXZzkzGIlzB7IF11Ca-gZ2-Hzfj0v3G7MoSVNGMOYkli1S9X_MYjJ635a85o/w400-h219/individu.PNG" class="card-img-top" alt="Individu">
+                    <div class="card-body">
+                        <h5 class="card-title">Individu 1</h5>
+                        <p class="card-text">Panduan belajar individu untuk siswa.</p>
+                        <a href="asesmen5_individu1.html" class="btn btn-primary">Lihat Asesmen</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Individu -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0h8DSTdTf_3dryNm7FPfKRtqRBlM5eRnsOqvXgUkY-dGN_kDZiGwQ8p5_QhzVeEZCN_B20bTtf2TLp09VDBTvD1PnDXAtlOYGam9zjOcvKy3GR6vXrGlOOqPvDpI69EExXZzkzGIlzB7IF11Ca-gZ2-Hzfj0v3G7MoSVNGMOYkli1S9X_MYjJ635a85o/w400-h219/individu.PNG" class="card-img-top" alt="Individu">
+                    <div class="card-body">
+                        <h5 class="card-title">Individu 2</h5>
+                        <p class="card-text">Panduan belajar individu untuk siswa.</p>
+                        <a href="individu2_5.html" class="btn btn-primary">Lihat Asesmen</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Refleksi -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0h8DSTdTf_3dryNm7FPfKRtqRBlM5eRnsOqvXgUkY-dGN_kDZiGwQ8p5_QhzVeEZCN_B20bTtf2TLp09VDBTvD1PnDXAtlOYGam9zjOcvKy3GR6vXrGlOOqPvDpI69EExXZzkzGIlzB7IF11Ca-gZ2-Hzfj0v3G7MoSVNGMOYkli1S9X_MYjJ635a85o/w400-h219/individu.PNG" class="card-img-top" alt="Individu">
+                    <div class="card-body">
+                        <h5 class="card-title">Individu 3</h5>
+                        <p class="card-text">Panduan belajar individu untuk siswa.</p>
+                        <a href="individu3_5.html" class="btn btn-primary">Lihat Asesmen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    let isFullscreen = false;
+    const navbar = document.getElementById('navbarNav');
+    const footer = document.getElementById('footer');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            navbar.classList.add('hidden');
+            footer.classList.add('hidden');
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; // Ganti ikon ke "compress"
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari dan Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            navbar.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>'; // Ganti ikon kembali ke "expand"
+        }
+    });
+    document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
+</script>
+</body>
+</html>

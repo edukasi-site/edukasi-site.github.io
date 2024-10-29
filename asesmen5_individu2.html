@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>TEACHING MATERIALS - ASESMEN</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXQR4Z8eKKj6IAbuuPGxSRLVgcdcRK_l4PYfv17nUz64KBak_CphgPQf0E19aPi8hm5ghx_j11KQIqlmh9MTA1KQMsRD3eFfewjZqNO4uEORRMw9vHhW83E4qA5dS5beDhdtHL0oLAWRGoR51ocTDPj7ny-PGylJLnpn8Xx3H27lIAlQIMj5fjV7ik0sY/w640-h362/web.jpg");
+            background-size: cover;
+          }
+        ::-webkit-scrollbar {
+             display: none;}
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .main-content{
+            margin-top: 40px;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .text-danger {
+            color: red;
+        }
+        #improvementSuggestions, #assessmentResults{
+            line-height: 15px;
+        }
+        .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+
+         @media (max-width: 576px) {
+         .navbar-collapse {
+            display: flex !important;
+            justify-content: center;
+            font-size: 14px;
+          }
+         .navbar-nav {
+            justify-content: center;
+            margin-right: 28px;
+          }
+         .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+         .modal-body img {
+             width: 100%;
+            height: auto;
+          }
+          .main-content {
+            margin-top: 50px;
+            margin-bottom: 30px;
+          }
+          .main-content h1{
+            font-size: 25px;
+          }
+         .w-50, #result {
+            width: 90% !important;
+          }
+         .form-control {
+            font-size: 16px; 
+          }
+          .footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+          }
+           .footer .social-icons a {
+            color: white;
+            font-size: 18px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+         }
+         #brand, #fullscreenBtn{
+           display: none;
+         }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+            <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <button id="fullscreenBtn" class="btn btn-dark" style="border: none; margin-left: 15px;">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="main5.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi5.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen5.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal for Image Popup -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main-content">
+    <h1 class="mt-5">Voice Record Level 1</h1>
+    <hr class="bg-primary my-3">
+    <form name="google-sheet" id="voiceRecordForm" action="https://script.google.com/macros/s/AKfycbxCPBFc9Qe36Wj9wVv6FZJXCVTiTbGTgK1IWCo-y00LCVcZq8frduDx7Z7VjA-pdSwa/exec" method="POST" class="w-50">
+        <input type="hidden" name="source" value="individu2">
+        <div class="form-group">
+            <label for="nameInput"><i class="fa fa-user-tie"></i><span class="ml-2">Nama</span></label>
+            <input type="text" class="form-control" id="nameInput" name="Nama" placeholder="Input nama" required>
+        </div>
+        <div class="form-group">
+       <label for="voiceInput"><i class="fa-solid fa-circle-dot"></i> Hasil Rekaman </label>
+       <input type="text" class="form-control" id="voiceInput" name="voiceInput" placeholder="Hasil rekaman" readonly>
+     </div>
+        <button type="button" class="btn btn-primary" id="startBtn" onclick="startRecording()">Start</button>
+        <button type="button" class="btn btn-danger" id="stopBtn" onclick="stopRecording()" disabled>Stop</button>
+        <a href="individu_5.html" class="btn btn-secondary">Back</a>
+   
+
+    <h5 class="mt-4">Aspek Penilaian</h5>
+    <hr class="bg-primary my-2">
+    <div id="assessmentResults" class="w-50">
+        <div class="form-group">
+            <label for="fluency">1. Kelancaran:</label>
+            <span id="fluencyResult" name="fluencyResult">-</span>
+            <input type="hidden" name="fluency" id="fluency">
+        </div>
+        <div class="form-group">
+            <label for="intonation">2. Intonasi:</label>
+            <span id="intonationResult" name="intonationResult">-</span>
+            <input type="hidden" name="intonation" id="intonation">
+        </div>
+        <div class="form-group">
+            <label for="pronunciation">3. Pelafalan:</label>
+            <span id="pronunciationResult" name="pronunciationResult">-</span>
+            <input type="hidden" name="pronunciation" id="pronunciation">
+        </div>
+    </div>
+
+    <div id="result" class="mt-2">
+        <h5>Hasil Penilaian:</h5>
+        <p id="scoreMessage"></p>
+        <div id="improvementSuggestions" class="mt-2"></div>
+        <p id="totalScoreDisplay"></p>
+        <input type="hidden" name="status" id="status">
+        <input type="hidden" name="improvementSuggestions" id="improvementSuggestions">
+    </div>
+    <button type="submit" name="simpan" class="btn btn-primary mb-4">
+        Submit
+    </span><i id="loadingIcon" class="fas fa-spinner fa-spin" style="display:none;"></i>
+    </button>
+     <button type="button" class="btn btn-success ml-2 mb-4" id="suggestionBtn" style="display:none;" onclick="showPopup()">
+        Rekomendasi
+    </button>
+    </form>
+</div>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    let recognition;
+    function startRecording() {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('Browser Anda tidak mendukung Web Speech API. Silakan gunakan Google Chrome.');
+            return;
+        }
+        const nameInput = document.getElementById('nameInput').value.trim();
+       if (!nameInput) {
+        alert('Nama wajib diisi sebelum mulai merekam suara.');
+        return;
+      }
+
+        recognition = new webkitSpeechRecognition();
+        recognition.interimResults = false;
+        recognition.lang = 'en-GB';
+
+        recognition.onstart = () => {
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stopBtn').disabled = false;
+            console.log('Rekaman dimulai...');
+        };
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('voiceInput').value = transcript;
+            console.log('Hasil rekaman:', transcript);
+            assessRecording(transcript); 
+        };
+
+        recognition.onend = () => {
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stopBtn').disabled = true;
+            console.log('Rekaman dihentikan.');
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Error dalam rekaman: ', event.error);
+        };
+
+        recognition.start();
+    }
+
+    function stopRecording() {
+        recognition.stop(); 
+    }
+
+    function displaySuggestionButton() {
+    const suggestionBtn = document.getElementById('suggestionBtn');
+    suggestionBtn.style.display = 'inline-block'; // Tampilkan tombol
+  }
+
+  function showPopup() {
+    const fluencyScore = parseFloat(document.getElementById('fluencyResult').innerText);
+    const intonationScore = parseFloat(document.getElementById('intonationResult').innerText);
+    const pronunciationScore = parseFloat(document.getElementById('pronunciationResult').innerText);
+
+    const fluencySuggestion = getFluencySuggestion(fluencyScore);
+    const intonationSuggestion = getIntonationSuggestion(intonationScore);
+    const pronunciationSuggestion = getPronunciationSuggestion(pronunciationScore);
+    Swal.fire({
+        title: 'Rekomendasi Peningkatan<br><hr class="bg-primary">',
+        html: `
+            <h4>Kelancaran</h4>
+            <p>${fluencySuggestion}</p>
+            <hr>
+            <h4>Intonasi</h4>
+            <p>${intonationSuggestion}</p>
+            <hr>
+            <h4>Pelafalan</h4>
+            <p>${pronunciationSuggestion}</p>
+        `,
+        confirmButtonText: 'OK',
+        width: '600px',
+        padding: '1em',
+        backdrop: true,
+    });
+}
+
+function getFluencySuggestion(scoreC) {
+    if (scoreC < 50) {
+        return '<b>Kurangi jeda yang tidak perlu: </b> Saat berbicara, cobalah untuk menjaga alur bicara tanpa terlalu banyak berhenti. Jika ragu, tetap lanjutkan berbicara, karena jeda yang terlalu lama bisa mengurangi kepercayaan diri dan kesan lancar.';
+    } else if (scoreC >= 50 && scoreC < 70) {
+        return '<b>Berbicara lebih percaya diri: </b> Cobalah berlatih berbicara dengan lebih tegas. Keyakinan dalam berbicara tidak hanya membantu kelancaran tetapi juga meningkatkan daya tarik pendengar.';
+    } else {
+        return '<b>Latih variasi konteks berbicara: </b>Meskipun sudah lancar, cobalah untuk berbicara dalam berbagai situasi, seperti diskusi formal atau informal, agar kemampuan beradaptasi tetap terjaga.';
+    }
+}
+
+function getIntonationSuggestion(scoreD) {
+    if (scoreD < 50) {
+        return '<b>Tingkatkan variasi nada: </b> Saat berbicara, pastikan untuk tidak menggunakan nada yang monoton. Gunakan variasi nada untuk menekankan poin penting atau emosi yang ingin disampaikan.';
+    } else if (scoreD >= 50 && scoreD < 70) {
+        return '<b>Tekankan kata kunci: </b>Untuk membuat ucapan lebih menarik, pilih kata-kata penting dan berikan penekanan dengan sedikit menaikkan nada suara.';
+    } else {
+        return '<b>Berlatih mengatur tempo bicara: </b> Bicara terlalu cepat atau terlalu lambat bisa mengganggu intonasi. Latihan dengan kecepatan sedang dapat membantu intonasi terdengar lebih alami.';
+    }
+}
+
+function getPronunciationSuggestion(scoreE) {
+    if (scoreE < 50) {
+        return '<b>Perjelas setiap kata: </b> Pelafalan yang jelas adalah kunci untuk dipahami. Pastikan setiap suku kata terdengar jelas, terutama pada kata-kata yang panjang atau memiliki banyak konsonan.';
+    } else if (scoreE >= 50 && scoreE < 70) {
+        return '<b>Latih pelafalan huruf vokal dan konsonan: </b> Ada beberapa huruf yang cenderung lebih sulit diucapkan. Fokuslah pada huruf vokal dan konsonan yang sering salah diucapkan, seperti "r" atau "l."';
+    } else {
+        return '<b>Berlatih dengan menggunakan kata-kata sulit: </b> Pilih kata-kata yang sering salah diucapkan atau memiliki banyak suku kata, dan latih pengucapannya berulang kali hingga sempurna.';
+    }
+}
+
+
+   function assessRecording(transcript) {
+   if (transcript.length > 150) {
+        transcript = transcript.substring(0, 150);
+        alert("Suara yang direkam melebihi 150 karakter. Hanya 150 karakter pertama yang akan digunakan.");
+    }
+
+    displaySuggestionButton();
+
+    const words = transcript.split(' ').filter(Boolean);
+    const wordCount = words.length;
+
+    const fluencyScore = Math.min(wordCount * 10, 100);
+    const intonationScore = calculateIntonation(transcript);
+    const pronunciationScore = Math.random() * 100; 
+
+    displayScore('fluencyResult', fluencyScore, getColorBasedOnScore(fluencyScore, 30, 40, 50, 100));
+    displayScore('intonationResult', intonationScore, getColorBasedOnScore(intonationScore, 41, 50, 60, 100));
+    displayScore('pronunciationResult', pronunciationScore, getColorBasedOnScore(pronunciationScore, 51, 60, 70, 100));
+
+    const fluencyPassing = fluencyScore >= 50;
+    const intonationPassing = intonationScore >= 60;
+    const pronunciationPassing = pronunciationScore >= 70;
+    const totalScore = Math.round(fluencyScore + intonationScore + pronunciationScore);
+    let status = '';
+    let statusColor = '';
+
+    if (totalScore >= 180) {
+        status = 'Berhasil Mencapai';
+        statusColor = '#00ad0c';
+    } else if (totalScore >= 160 && totalScore <= 179) {
+        status = 'Sedang Mencapai';
+        statusColor = '#ffcf42';
+    } else {
+        status = 'Belum Mencapai';
+        statusColor = '#f00000';
+    }
+
+  document.getElementById('totalScoreDisplay').innerHTML = `<strong>Total Skor: ${totalScore} (Passing grade: 180)</strong>`;
+    const statusElement = document.getElementById('scoreMessage');
+    statusElement.innerText = `Status: ${status}`;
+    statusElement.style.color = statusColor;
+
+    let improvementSuggestions = '';
+    if (!fluencyPassing || !intonationPassing || !pronunciationPassing) {
+        improvementSuggestions = showImprovementSuggestions(fluencyScore, intonationScore, pronunciationScore);
+    } else {
+        document.getElementById('improvementSuggestions').innerHTML = ''; 
+    }
+
+    document.getElementById('status').value = status;
+    document.getElementById('improvementSuggestions').value = improvementSuggestions;
+
+    const resultData = {
+        name: document.getElementById('nameInput').value,
+        voiceInput: transcript,
+        fluency: fluencyScore,
+        intonation: intonationScore,
+        pronunciation: pronunciationScore,
+        status: status,
+        improvementSuggestions: improvementSuggestions
+    };
+
+    saveResults(resultData);
+    document.getElementById('result').style.display = 'block';
+}
+
+function displayScore(elementId, score, color) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.innerText = `${Math.round(score)} (${getStatusLabel(color)})`;
+        element.style.color = color; 
+        element.style.fontWeight = 'bold'; 
+    } else {
+        console.error(`Element with ID ${elementId} not found.`);
+    }
+}
+
+function getColorBasedOnScore(score, lowRange, highRange, passingGrade, maxGrade) {
+    if (score >= passingGrade) {
+        return '#00ad0c';
+    } else if (score >= lowRange && score <= highRange) {
+        return '#ffcf42';
+    } else {
+        return '#f00000'; 
+    }
+}
+
+function getStatusLabel(color) {
+    if (color === '#00ad0c') {
+        return 'Tinggi';  // High
+    } else if (color === '#ffcf42') {
+        return 'Sedang';
+    } else {
+        return 'Rendah';
+    }
+}
+
+function saveResults(resultData) {
+    const existingResults = JSON.parse(localStorage.getItem('recordResults')) || [];
+    existingResults.push(resultData);
+    localStorage.setItem('recordResults', JSON.stringify(existingResults));
+}
+
+function calculateIntonation(transcript) {
+    const britishIntonationPatterns = ['rising', 'falling', 'neutral'];
+    const randomScore = Math.random() * 100; 
+    return randomScore;
+}
+
+function showImprovementSuggestions(fluencyScore, intonationScore, pronunciationScore) {
+    const improvementSuggestions = [];
+
+    if (fluencyScore < 50) {
+        improvementSuggestions.push('<p class="text-danger">Kelancaran</p>');
+    }
+
+    if (intonationScore < 60) { 
+        improvementSuggestions.push('<p class="text-danger">Intonasi</p>');
+    }
+
+    if (pronunciationScore < 70) {
+        improvementSuggestions.push('<p class="text-danger">Pelafalan</p>');
+    }
+
+    return improvementSuggestions.join('');
+}
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxCPBFc9Qe36Wj9wVv6FZJXCVTiTbGTgK1IWCo-y00LCVcZq8frduDx7Z7VjA-pdSwa/exec';
+const form = document.forms['google-sheet'];
+const submitButton = document.querySelector('button[type="submit"]');
+const loadingIcon = document.getElementById('loadingIcon');
+const nameInput = document.getElementById('nameInput');
+const voiceInput = document.getElementById('voiceInput');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (voiceInput.value.trim() === "") {
+        Swal.fire({
+            icon: 'warning',
+            text: 'Hasil rekaman suara tidak ditemukan!',
+            confirmButtonText: 'OK'
+        });
+        return; 
+    }
+
+    console.log("Form submitted");
+    document.getElementById('fluency').value = document.getElementById('fluencyResult').textContent;
+    document.getElementById('intonation').value = document.getElementById('intonationResult').textContent;
+    document.getElementById('pronunciation').value = document.getElementById('pronunciationResult').textContent;
+    loadingIcon.style.display = 'inline-block';
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            if (response.ok) {
+                console.log("Form successfully submitted");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses!',
+                    text: 'Jawaban Anda telah terkirim.',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    form.reset();
+                    loadingIcon.style.display = 'none';
+                });
+            } else {
+                throw new Error("Form submission failed");
+            }
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terjadi kesalahan saat mengirim!',
+            });
+            loadingIcon.style.display = 'none';
+        });
+  });
+
+
+ let isFullscreen = false;
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
+</script>
+</body>
+</html>
