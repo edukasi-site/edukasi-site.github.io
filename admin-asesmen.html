@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEACHING MATERIALS - EVALUASI</title>
+  <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+ <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+     /* Custom Scrollbar Styles */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      margin-bottom: -10px;
+      margin-top: 70px;
+      width: 100%;
+      max-width: 1400px;
+    } 
+    .dtr-control {
+      cursor: pointer;
+    }
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+    }
+    .navbar-nav .nav-item {
+      margin: 0 10px;
+    }
+    .footer {
+      color: #000;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .footer .social-icons {
+      margin: 5px 0;
+    }
+    .footer .social-icons a {
+      color: #000;
+      font-size: 20px;
+      margin: 0 15px;
+      display: inline-block;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer .social-icons a:hover {
+      color: #17a2b8;
+      transform: scale(1.2);
+    }
+    .footer p {
+      margin: 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    @media (max-width: 576px) {
+      .navbar-collapse {
+        display: flex !important;
+        justify-content: center;
+        font-size: 14px;
+      }
+       .navbar-nav {
+          justify-content: center;
+          margin-right: 15px;
+      }
+      .container{
+        margin-top: 120px;
+        margin-bottom: -10px;
+      }
+      .container h1{
+        font-size: 25px;
+      }
+      .footer{
+        margin-bottom: 20px;
+      }
+      .modal-body img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+            <span><b>TEACHING MATERIALS</b></span>
+        </a>
+       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-pemantik.html">
+                        <i class="fas fa-lightbulb"></i> Pemantik
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownIndividu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-clipboard-check"></i> Asesmen
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownIndividu">
+                        <a class="dropdown-item" href="admin-individu1.html">Individu 1</a>
+                        <a class="dropdown-item" href="admin-individu2.html">Individu 2</a>
+                        <a class="dropdown-item" href="admin-individu3.html">Individu 3</a>
+                        <a class="dropdown-item" href="admin-asesmen.html">Evaluasi</a>
+                        <a class="dropdown-item" href="admin-refleksi.html">Refleksi</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <div class="container">
+    <h1 class="text-center mt-4 my-4">Asesmen Evaluasi</h1>
+     <hr class="bg-primary">
+    <table id="evaluasiTable" class="table table-bordered table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th></th>
+          <th>No.</th>
+          <th>Nama Siswa</th>
+          <th>Kelas</th>
+          <th>Skor</th>
+          <th>Ans1</th>
+          <th>Ans2</th>
+          <th>Ans3</th>
+          <th>Ans4</th>
+          <th>Ans5</th>
+          <th>Ans6</th>
+          <th>Ans7</th>
+          <th>Ans8</th>
+          <th>Ans9</th>
+          <th>Ans10</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+  <footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var table = $('#evaluasiTable').DataTable({
+        responsive: {
+          details: {
+            type: 'column',
+            target: 0
+           }
+          },
+          columnDefs: [
+          {
+            className: 'dtr-control',
+            orderable: false,
+            targets: 0 
+          },
+          {
+            targets: '_all',
+            className: 'nowrap'
+          }
+        ],
+        retrieve: true,
+        paging: true,
+        searching: true,
+        ordering: true 
+      });
+
+     var displayedNames = [];
+
+     function fetchData() {
+     $.ajax({
+        url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/Evaluasi!A3:M?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if (response.values) {
+                var rows = response.values;
+                var nomorUrut = 1;
+                displayedNames = [];
+                table.clear().draw();
+
+                if (rows.length > 0) {
+                    for (var i = 0; i < rows.length; i++) {
+                        var studentName = rows[i][0];
+                        var kelas = rows[i][1];
+                        var score = rows[i][2];
+                        var ans1 = rows[i][3];
+                        var ans2 = rows[i][4];
+                        var ans3 = rows[i][5];
+                        var ans4 = rows[i][6];
+                        var ans5 = rows[i][7];
+                        var ans6 = rows[i][8];
+                        var ans7 = rows[i][9];
+                        var ans8 = rows[i][10];
+                        var ans9 = rows[i][11];
+                        var ans10 = rows[i][12];
+
+                        if (displayedNames.indexOf(studentName) === -1) {
+                            displayedNames.push(studentName);
+
+                            var row = [];
+                            row.push('');
+                            row.push(nomorUrut++);
+                            row.push(studentName);
+                            row.push(kelas);
+                             if (parseFloat(score) >= 80) {
+                                row.push('<span style="color: green; font-weight: bold;">' + score + '</span>');
+                            } else {
+                                row.push('<span style="color: red;">' + score + '</span>');
+                            }
+                            row.push(ans1);
+                            row.push(ans2);
+                            row.push(ans3);
+                            row.push(ans4);
+                            row.push(ans5);
+                            row.push(ans6);
+                            row.push(ans7);
+                            row.push(ans8);
+                            row.push(ans9);
+                            row.push(ans10);
+                            table.row.add(row).draw();
+                        }
+                    }
+                } else {
+                    console.error('No data found.');
+                }
+            } else {
+                console.error('No data in the response:', response);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching data:', error);
+          }
+        });
+      }
+      setInterval(fetchData, 5000);
+      fetchData();
+    });
+    document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+    });
+  </script>
+
+</body>
+</html>

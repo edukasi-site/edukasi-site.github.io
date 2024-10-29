@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEACHING MATERIALS - INDIVIDU 2</title>
+  <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+  <style>
+     html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Custom Scrollbar Styles */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      margin-top: 70px;
+      width: 100%;
+      max-width: 1400px;
+    }
+    .dtr-control {
+      cursor: pointer;
+    }
+    .read-more {
+      color: blue;
+      cursor: pointer;
+    }
+    .belum-mencapai {
+      background-color: red;
+      color: white;
+    }
+    .sedang-mencapai {
+      background-color: yellow;
+      color: black;
+    }
+    .berhasil-mencapai {
+      background-color: green;
+      color: white;
+    }
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+    }
+    .navbar-nav .nav-item {
+      margin: 0 10px;
+    }
+    .footer {
+      color: #000;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .footer .social-icons {
+      margin: 5px 0;
+    }
+    .footer .social-icons a {
+      color: #000;
+      font-size: 20px;
+      margin: 0 15px;
+      display: inline-block;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer .social-icons a:hover {
+      color: #17a2b8;
+      transform: scale(1.2);
+    }
+    .footer p {
+      margin: 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    @media (max-width: 576px) {
+      .navbar-collapse {
+        display: flex !important;
+        justify-content: center;
+        font-size: 14px;
+      }
+       .navbar-nav {
+          justify-content: center;
+          margin-right: 15px;
+      }
+      .container{
+        margin-top: 120px;
+        font-size: 15px;
+      }
+      .container h1{
+        font-size: 25px;
+      }
+
+      .modal-body img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+            <span><b>TEACHING MATERIALS</b></span>
+        </a>
+       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-pemantik.html">
+                        <i class="fas fa-lightbulb"></i> Pemantik
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownIndividu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-clipboard-check"></i> Asesmen
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownIndividu">
+                        <a class="dropdown-item" href="admin-individu1.html">Individu 1</a>
+                        <a class="dropdown-item" href="admin-individu2.html">Individu 2</a>
+                        <a class="dropdown-item" href="admin-individu3.html">Individu 3</a>
+                        <a class="dropdown-item" href="admin-asesmen.html">Evaluasi</a>
+                        <a class="dropdown-item" href="admin-refleksi.html">Refleksi</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <div class="container">
+    <h1 class="text-center mt-3">Asesmen Individu 3</h1>
+     <hr class="bg-primary">
+    <table id="individu3Table" class="table table-bordered table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th></th>
+          <th style="width: 50px;">No.</th>
+          <th style="width: 300px;">Nama</th>
+          <th style="width: 100px;">Kelas</th>
+          <th style="width: 300px;">Voice Input</th>
+          <th>Pronunciation</th>
+          <th>Intonation</th>
+          <th>Fluency</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal fade" id="voiceInputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Full Text</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="modalFullText"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    var table = $('#individu3Table').DataTable({
+        responsive: {
+            details: {
+                type: 'column',
+                target: 0
+            }
+        },
+        columnDefs: [
+            {
+                className: 'dtr-control',
+                orderable: false,
+                targets: 0
+            },
+            {
+                targets: '_all',
+                className: 'nowrap'
+            }
+        ],
+        retrieve: true,
+        paging: true,
+        searching: true,
+        ordering: true
+    });
+
+    function fetchData() {
+        $.ajax({
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/Individu3!A2:F?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                table.clear().draw();
+                if (data.values && data.values.length > 0) {
+                    let rowNumber = 1;
+                    data.values.forEach(function (row, index) {
+
+                        const nama = row[0] || ''; 
+                        const kelas = row[1] || ''; 
+                        const voiceInput = row[2] || ''; 
+                        const pronunciation = row[3] || ''; 
+                        const intonation = row[4] || ''; 
+                        const fluency = row[5] || ''; 
+
+                        table.row.add([
+                            '',                 
+                            rowNumber++,       
+                            nama,               
+                            kelas,           
+                            voiceInput,      
+                            pronunciation,    
+                            intonation,    
+                            fluency        
+                        ]).draw(false);
+                    });
+                } else {
+                    console.error('No data found in the specified range.');
+                }
+            },
+            error: function (error) {
+                console.error('Error fetching data from Google Sheets:', error);
+            }
+        });
+    }
+    fetchData();
+});
+</script>
+</body>
+</html>

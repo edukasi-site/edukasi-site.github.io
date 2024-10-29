@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+    <title>TEACHING MATERIALS - HOME</title>
+    <style>
+        body {
+            padding: 0;
+            background-color: #000000;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .floating-text {
+            position: relative;
+            top: 150px;
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        #imageIntro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+        }
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+        .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+        .logo-container img {
+            max-width: 150px; /* Set a max width */
+            height: auto;
+            border-radius: 50%;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 150px;
+        }
+
+        .logo-container img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 576px) {
+            .navbar-collapse {
+                display: flex !important;
+                justify-content: center;
+                font-size: 14px;
+            }
+            .navbar-nav {
+                justify-content: center;
+                margin-right: 25px;
+            }
+            .floating-text {
+                top: 150px;
+                font-size: 28px;
+            }
+            .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+            .modal-body img {
+                width: 100%;
+                height: auto;
+            }
+            .logo-container img {
+                margin-top: -35px;
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+            <span><a href="../index.html" style="color:#fff; text-decoration:none;font-size: 1.2rem;margin-right: 35px;"><b>TEACHING MATERIALS</b></a></span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-pemantik.html">
+                        <i class="fas fa-lightbulb"></i> Pemantik
+                    </a>
+                </li>
+                <!-- Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownIndividu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-clipboard-check"></i> Asesmen
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownIndividu">
+                        <a class="dropdown-item" href="admin-individu1.html">Individu 1</a>
+                        <a class="dropdown-item" href="admin-individu2.html">Individu 2</a>
+                        <a class="dropdown-item" href="admin-individu3.html">Individu 3</a>
+                        <a class="dropdown-item" href="admin-asesmen.html">Evaluasi</a>
+                        <a class="dropdown-item" href="admin-refleksi.html">Refleksi</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h1 class="floating-text" id="judul">ENGLISH FOR ELEMENTARY SCHOOL</h1>
+<img id="imageIntro" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXQR4Z8eKKj6IAbuuPGxSRLVgcdcRK_l4PYfv17nUz64KBak_CphgPQf0E19aPi8hm5ghx_j11KQIqlmh9MTA1KQMsRD3eFfewjZqNO4uEORRMw9vHhW83E4qA5dS5beDhdtHL0oLAWRGoR51ocTDPj7ny-PGylJLnpn8Xx3H27lIAlQIMj5fjV7ik0sY/w640-h362/web.jpg" alt="Intro Image">
+<div class="logo-container">
+    <img src="https://i.giphy.com/ikMppMKl5htEnKnwQv.webp">
+</div>
+<div class="footer">
+    <a href="admin-pemantik.html" class="btn btn-light btn-lg">Get started</a>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../assets/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>
