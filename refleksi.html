@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/header.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>TEACHING MATERIALS - ASESMEN</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer stays at the bottom */
+        }
+        ::-webkit-scrollbar {
+             display: none;}
+        
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+
+        .content{
+            margin-top: 120px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        #improvementSuggestions, #assessmentResults {
+            line-height: 5px;
+        }
+
+        .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-down {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-down.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 576px) {
+         .navbar-collapse {
+            display: flex !important;
+            justify-content: center;
+            font-size: 14px;
+          }
+         .navbar-nav {
+            justify-content: center;
+            margin-right: 28px;
+          }
+         .content{
+            margin-top:85px;
+            margin-bottom: 30px;
+        }
+        .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+            .modal-body img {
+                width: 100%;
+                height: auto;
+          }
+         .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+         }
+         #brand, #fullscreenBtn{
+          display: none;
+         }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="assets/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+            <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <button id="fullscreenBtn" class="btn btn-dark" style="border: none; margin-left: 15px;">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal for Image Popup -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<div class="container">
+    <div class="content">
+        <h2 class="text-left fade-up">Refleksi Pembelajaran</h2>
+        <hr class="bg-primary fade-up">
+         <form name="google-sheet" action="https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec" method="POST" class="form">
+        <input type="hidden" name="source" value="refleksi">
+         <div class="form-group fade-up">
+            <label for="name"><b><i class="fas fa-user"></i> Student Name</b></label>
+             <div class="input-group">
+             <span class="input-group-text"><i class="fas fa-pen"></i></span>
+            <input type="text" class="form-control fade-up" name="Nama" placeholder="Type your name here ..." required>
+         </div>
+       </div>
+        <div class="form-group fade-up">
+            <label for="kelas"><b><i class="fa fa-chalkboard-teacher"></i> Class/Section</b></label>
+             <div class="input-group">
+             <span class="input-group-text"><i class="fas fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="kelas" name="Kelas" required>
+                <option value="">Select class</option>
+            </select>
+         </div>
+       </div>
+
+        <h5 class="text-left fade-up mt-3">1. Tingkat Pemahaman Materi</h5>
+        <p class="fade-up mb-4">Seberapa baik Anda memahami materi ini?</p>
+        <div class="input-group fade-up">
+        <span class="input-group-text"><i class="fa-solid fa-thumbs-up"></i></span>
+        <select class="form-control fade-up" name="Refleksi1">
+            <option value="sangat_baik">Sangat Baik</option>
+            <option value="baik">Baik</option>
+            <option value="cukup">Cukup</option>
+        </select>
+      </div>
+
+        <h5 class="text-left fade-up mt-3">2. Keterkaitan Materi dengan Kehidupan Sehari-hari</h5>
+        <p class="fade-up mb-4">Bagaimana Anda melihat relevansi materi ini dalam komunikasi sehari-hari Anda?</p>
+        <div class="input-group fade-up">
+        <span class="input-group-text"><i class="fa-solid fa-thumbs-up"></i></span>
+        <select class="form-control fade-up" name="Refleksi2">
+            <option value="sangat_relevan">Sangat Relevan</option>
+            <option value="relevan">Relevan</option>
+            <option value="cukup_relevan">Cukup Relevan</option>
+        </select>
+      </div>
+
+        <h5 class="text-left fade-up mt-3">3. Kepuasan Terhadap Media Pembelajaran</h5>
+        <p class="fade-up mb-4">Bagaimana pendapat Anda tentang media yang digunakan (misalnya, audio, rekam suara dan teks cerita) dalam pembelajaran ini?</p>
+        <div class="input-group fade-up">
+        <span class="input-group-text"><i class="fa-solid fa-thumbs-up"></i></span>
+        <select class="form-control fade-up" name="Refleksi3">
+            <option value="sangat_memuaskan">Sangat Memuaskan</option>
+            <option value="memuaskan">Memuaskan</option>
+            <option value="cukup_memuaskan">Cukup Memuaskan</option>
+        </select>
+      </div>
+
+        <h5 class="text-left fade-up mt-3">4. Keterlibatan dalam Pembelajaran</h5>
+        <p class="fade-up mb-4">Seberapa terlibat Anda dalam proses pembelajaran ini ketika membaca teks?</p>
+        <div class="input-group fade-up">
+        <span class="input-group-text"><i class="fa-solid fa-thumbs-up"></i></span>
+        <select class="form-control fade-up" name="Refleksi4">
+            <option value="sangat_terlibat">Sangat Terlibat</option>
+            <option value="terlibat">Terlibat</option>
+            <option value="cukup_terlibat">Cukup Terlibat</option>
+            <option value="kurang_terlibat">Kurang Terlibat</option>
+        </select>
+      </div>
+
+        <h5 class="text-left fade-up mt-3">5. Saran / masukan</h5>
+        <p class="fade-up mb-4">Apa saran Anda untuk meningkatkan pengalaman pembelajaran terkait materi ini di masa mendatang?</p>
+        <div class="input-group fade-up">
+          <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
+          <textarea class="form-control fade-up" name="Saran Perbaikan" placeholder="Contoh: Saya menyarankan agar materi disertai dengan lebih banyak latihan interaktif." required></textarea>
+        </div>
+        <br>
+        <a href="asesmen.html" class="btn btn-secondary fade-up mb-4">Go Back</a>
+         <button type="submit" name="simpan" class="btn btn-primary fade-up mb-4">
+            <span id="submitText">Submit Answer</span>
+            <i id="loadingIcon" class="fas fa-spinner fa-spin" style="display:none;"></i>
+        </button>
+    </form>
+    </div>
+</div>
+
+<br>
+<footer class="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    let isFullscreen = false;
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; // Change icon to compress
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>'; // Change icon back to expand
+        }
+    });
+
+async function fetchDropdownData() {
+    const spreadsheetId = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s'; 
+    const range = 'SoalEvaluasi!C3:C';
+    const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const dropdown = document.getElementById('kelas');
+        if (data.values && data.values.length > 0) {
+            data.values.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item[0]; 
+                option.textContent = item[0]; 
+                dropdown.appendChild(option);
+            });
+        } else {
+            console.error('No data found in the specified range');
+        }
+    } catch (error) {
+        console.error('Error fetching data from Google Sheets:', error);
+    }
+}
+fetchDropdownData();
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec'
+const form = document.forms['google-sheet']
+
+const submitButton = document.querySelector('button[type="submit"]');
+const submitText = document.getElementById('submitText');
+const loadingIcon = document.getElementById('loadingIcon');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    submitText.style.display = 'none';
+    loadingIcon.style.display = 'inline-block';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: 'Jawaban Anda telah terkirim.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.reload(); 
+            });
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terjadi kesalahan saat mengirim!',
+            });
+        })
+        .finally(() => {
+            submitText.style.display = 'inline';
+            loadingIcon.style.display = 'none';
+        });
+   });
+
+document.addEventListener('DOMContentLoaded', function() {
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimation() {
+            const fadeElementsUp = document.querySelectorAll('.fade-up');
+            const fadeElementsDown = document.querySelectorAll('.fade-down');
+
+            fadeElementsUp.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+
+            fadeElementsDown.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation();
+    });
+
+ document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
+</script>
+</body>
+</html>

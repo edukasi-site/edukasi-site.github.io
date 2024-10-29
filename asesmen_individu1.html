@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/header.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>TEACHING MATERIALS - ASESMEN</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url("assets/bg.jpg");
+            color: #fff;
+            background-size: cover;
+         }
+        ::-webkit-scrollbar {
+             display: none;}
+        .hidden {
+          display: none !important;
+        }
+        
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+
+        .content{
+            margin-top: 120px;
+            color: #fff;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        #improvementSuggestions, #assessmentResults {
+            line-height: 5px;
+        }
+
+        .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 576px) {
+         .navbar-collapse {
+            display: flex !important;
+            justify-content: center;
+            font-size: 14px;
+          }
+         .navbar-nav {
+            justify-content: center;
+            margin-right: 28px;
+          }
+         .content{
+            margin-top:85px;
+            margin-bottom: 20px;
+        }
+        .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+            .modal-body img {
+                width: 100%;
+                height: auto;
+          }
+         .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+         }
+          #brand, #fullscreenBtn{
+           display: none;
+         }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbarNav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="assets/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+             <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <button id="fullscreenBtn" class="btn btn-dark" style="border: none; margin-left: 15px;">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal for Image Popup -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+  
+<div class="container"> 
+    <div class="content">
+        <h2 class="text-left">Asesmen Individu 1</h2>
+        <hr class="bg-primary">
+        <h5 class="text-left">1. Tujuan</h5>
+        <p id="tujuan"></p>
+        <h5 class="text-left mt-3">2. Instruksi</h5>
+        <form name="google-sheet" action="https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec" method="POST" class="form" id="inputForm">
+        <input type="hidden" name="source" value="individu1">
+        <p id="petunjuk"></p>
+
+        <strong id="nama"><i class="fas fa-user"></i> Student Name</strong>
+        <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-pen"></i></span>
+            <input type="text" class="form-control" name="Nama" placeholder="Type your name here ..." required>
+        </div>
+        <strong><i class="fa fa-chalkboard-teacher"></i> Class/Section</strong>
+        <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-list"></i></span>
+            <select type="text" class="form-control" id="kelas" name="Kelas" required>
+                <option value="">Select class</option>
+            </select>
+        </div>
+
+        <div class="q1 mt-3" style="display:none;">
+            <strong id="q1"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer1" id="answer1" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer1')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+               </button>
+            </div>
+        </div>
+
+        <div class="q2 mt-3" style="display:none;">
+            <strong id="q2"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer2" id="answer2" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer2')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q3 mt-3" style="display:none;">
+            <strong id="q3"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer3" id="answer3" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer3')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q4 mt-3" style="display:none;">
+            <strong id="q4"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer4" id="answer4" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer4')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q5 mt-3" style="display:none;">
+            <strong id="q5"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer5" id="answer5" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer5')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q6 mt-3" style="display:none;">
+            <strong id="q6"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer6" id="answer6" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer6')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q7 mt-3" style="display:none;">
+            <strong id="q7"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer7" id="answer7" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer7')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q8 mt-3" style="display:none;">
+            <strong id="q8"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer8" id="answer8" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer8')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q9 mt-3" style="display:none;">
+            <strong id="q9"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer9" id="answer9" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer9')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="q10 mt-3" style="display:none;">
+            <strong id="q10"></strong>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-circle-dot"></i></span>
+                <textarea type="text" class="form-control" name="Answer10" id="answer10" placeholder="Jawaban di sini..." readonly></textarea>
+                <button type="button" onclick="startRecording('answer10')" class="btn btn-primary ml-2">
+                  <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+        <br>
+
+        <a href="individu.html" class="btn btn-secondary">Go Back</a>
+        <button type="submit" name="simpan" class="btn btn-primary">
+            <span id="submitText">Submit Answer</span>
+            <i id="loadingIcon" class="fas fa-spinner fa-spin" style="display:none;"></i>
+        </button>
+        
+        <h5 class="text-left mt-4">3. Kriteria Penilaian</h5>
+        <p id="kriteria" class="mb-4"></p>
+        <br>
+    </form>
+    </div>
+</div>
+
+<br>
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+const API_KEY = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+const SHEET_ID = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s';
+const RANGE_A = 'Task_Individu1!A2:A6';
+const RANGE_B = 'Task_Individu1!B2:B11';
+async function fetchData() {
+    const urlA = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_A}?key=${API_KEY}`;
+    const responseA = await fetch(urlA);
+    const dataA = await responseA.json();
+    const rowsA = dataA.values;
+
+    const wordsToBold = ["was", "were", "yesterday", "I", "we", "she", "they", "excited"];
+
+     if (rowsA[0] && rowsA[0][0]) {
+        document.getElementById('tujuan').innerHTML = makeBoldText(rowsA[0][0], wordsToBold);
+    }
+
+    if (rowsA[2] && rowsA[2][0]) {
+        document.getElementById('petunjuk').innerHTML = makeBoldText(rowsA[2][0], wordsToBold);
+    }
+
+    if (rowsA[4] && rowsA[4][0]) {
+        document.getElementById('kriteria').innerHTML = makeBoldText(rowsA[4][0], wordsToBold);
+    }
+
+    function makeBoldText(text, wordsToBold) {
+    wordsToBold.forEach(word => {
+        const regex = new RegExp(`(${word})`, 'gi');
+        text = text.replace(regex, '<b>$1</b>');
+    });
+    return text;
+   }
+
+    const urlB = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_B}?key=${API_KEY}`;
+    const responseB = await fetch(urlB);
+    const dataB = await responseB.json();
+    const rowsB = dataB.values;
+    for (let i = 0; i < rowsB.length; i++) {
+        const question = rowsB[i][0];
+        const questionElement = document.getElementById(`q${i + 1}`);
+        const questionDiv = document.querySelector(`.q${i + 1}`);
+        const inputField = document.querySelector(`.q${i + 1} textarea`);
+
+        if (question) {
+            questionElement.innerText = `${i + 1}. ${question}`;
+            questionDiv.style.display = 'block';
+            inputField.setAttribute('required', 'true');
+        } else {
+            questionDiv.style.display = 'none';
+            inputField.removeAttribute('required');
+        }
+    }
+}
+
+window.onload = fetchData;
+
+function startRecording(answerId) {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+        Swal.fire('Error', 'Peramban Anda tidak mendukung fitur rekaman suara', 'error');
+        return;
+    }
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-GB'; // Set ke Bahasa Indonesia
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.start();
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById(answerId).value = transcript;
+    };
+
+    recognition.onerror = function(event) {
+        Swal.fire('Error', 'Terjadi kesalahan saat merekam: ' + event.error, 'error');
+    };
+}
+
+
+
+ fetch('https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/SoalEvaluasi!C3:C?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4')
+        .then(response => response.json())
+        .then(function(data) {
+            const classDropdown = document.getElementById('kelas');
+            const classData = data.values;
+            if (classData && classData.length > 0) {
+                classData.forEach(function(classItem) {
+                    const option = document.createElement('option');
+                    option.value = classItem[0];
+                    option.textContent = classItem[0];
+                    classDropdown.appendChild(option);
+                });
+            } else {
+                console.error('No class data found in the sheet.');
+            }
+        })
+        .catch(function(error) {
+            console.error('Error fetching class data:', error);
+     });
+
+    let isFullscreen = false;
+    const navbar = document.getElementById('navbarNav');
+    const footer = document.getElementById('footer');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            navbar.classList.add('hidden');
+            footer.classList.add('hidden');
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; // Ganti ikon ke "compress"
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari dan Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            navbar.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>'; // Ganti ikon kembali ke "expand"
+        }
+    });
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec'
+const form = document.forms['google-sheet']
+
+const submitButton = document.querySelector('button[type="submit"]');
+const submitText = document.getElementById('submitText');
+const loadingIcon = document.getElementById('loadingIcon');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    submitText.style.display = 'none';
+    loadingIcon.style.display = 'inline-block';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses!',
+                text: 'Jawaban Anda telah terkirim.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.reload(); 
+            });
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terjadi kesalahan saat mengirim!',
+            });
+        })
+        .finally(() => {
+            submitText.style.display = 'inline';
+            loadingIcon.style.display = 'none';
+        });
+   });
+
+</script>
+</body>
+</html>
