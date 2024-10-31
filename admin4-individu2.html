@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEACHING MATERIALS - INDIVIDU 2</title>
+  <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+  <style>
+     html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Custom Scrollbar Styles */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      margin-top: 70px;
+      width: 100%;
+      max-width: 1400px;
+    }
+    .dtr-control {
+      cursor: pointer;
+    }
+    .read-more {
+      color: blue;
+      cursor: pointer;
+    }
+    .belum-mencapai {
+      background-color: red;
+      color: white;
+    }
+    .sedang-mencapai {
+      background-color: yellow;
+      color: black;
+    }
+    .berhasil-mencapai {
+      background-color: green;
+      color: white;
+    }
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+    }
+    .navbar-nav .nav-item {
+      margin: 0 10px;
+    }
+    .footer {
+      color: #000;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .footer .social-icons {
+      margin: 5px 0;
+    }
+    .footer .social-icons a {
+      color: #000;
+      font-size: 20px;
+      margin: 0 15px;
+      display: inline-block;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .footer .social-icons a:hover {
+      color: #17a2b8;
+      transform: scale(1.2);
+    }
+    .footer p {
+      margin: 0;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    @media (max-width: 576px) {
+      .navbar-collapse {
+        display: flex !important;
+        justify-content: center;
+        font-size: 14px;
+      }
+       .navbar-nav {
+          justify-content: center;
+          margin-right: 15px;
+      }
+      .container{
+        margin-top: 120px;
+        font-size: 15px;
+      }
+      .container h1{
+        font-size: 25px;
+      }
+
+      .modal-body img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+            <span><b>TEACHING MATERIALS</b></span>
+        </a>
+       
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin4.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin4-pemantik.html">
+                        <i class="fas fa-lightbulb"></i> Pemantik
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownIndividu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-clipboard-check"></i> Asesmen
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownIndividu">
+                        <a class="dropdown-item" href="admin4-individu1.html">Individu 1</a>
+                        <a class="dropdown-item" href="admin4-individu2.html">Individu 2</a>
+                        <a class="dropdown-item" href="admin4-individu3.html">Individu 3</a>
+                        <a class="dropdown-item" href="admin4-asesmen.html">Evaluasi</a>
+                        <a class="dropdown-item" href="admin4-refleksi.html">Refleksi</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  <div class="container">
+    <h1 class="text-center mt-3">Asesmen Individu 2</h1>
+     <hr class="bg-primary">
+    <table id="individuTable" class="table table-bordered table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th></th>
+          <th>No.</th>
+          <th>Nama</th>
+          <th>Voice Input</th>
+          <th>Fluency</th>
+          <th>Intonation</th>
+          <th>Pronounciation</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Improvement</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal fade" id="voiceInputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Full Text</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="modalFullText"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var table = $('#individuTable').DataTable({
+        responsive: {
+          details: {
+            type: 'column',
+            target: 0
+          }
+        },
+        columnDefs: [
+          {
+            className: 'dtr-control',
+            orderable: false,
+            targets: 0
+          },
+          {
+            targets: '_all',
+            className: 'nowrap'
+          }
+        ],
+        retrieve: true,
+        paging: true,
+        searching: true,
+        ordering: true
+      });
+
+      var displayedNames = [];
+      function fetchData() {
+        $.ajax({
+          url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/Individu2!A2:H?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response) {
+            if (response.values) {
+              var rows = response.values;
+              var nomorUrut = 1;
+              displayedNames = [];
+              table.clear().draw();
+
+              if (rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                  var name = rows[i][0];
+                  if (displayedNames.indexOf(name) === -1) {
+                    displayedNames.push(name);
+
+                    var row = [];
+                    row.push('');
+                    row.push(nomorUrut++);
+                    for (var j = 0; j < 8; j++) {
+                      var cellContent = rows[i][j] || '';
+                      if (j === 1) {
+                        if (cellContent.length > 10) {
+                          cellContent = cellContent.substring(0, 10) + '... <span class="read-more" data-full-text="' + cellContent + '">More</span>';
+                        }
+                      }
+
+                      if (j === 7) {
+                        if (cellContent.length > 10) {
+                          cellContent = cellContent.substring(0, 10) + '... <span class="read-more" data-full-text="' + cellContent + '">More</span>';
+                        }
+                      }
+
+                      if (j === 6) {
+                        if (cellContent === "Belum Mencapai") {
+                          row.push('<span class="belum-mencapai">' + cellContent + '</span>');
+                        } else if (cellContent === "Sedang Mencapai") {
+                          row.push('<span class="sedang-mencapai">' + cellContent + '</span>');
+                        } else if (cellContent === "Berhasil Mencapai") {
+                          row.push('<span class="berhasil-mencapai">' + cellContent + '</span>');
+                        } else {
+                          row.push(cellContent);
+                        }
+                      } else {
+                        row.push(cellContent);
+                      }
+                    }
+                    table.row.add(row).draw();
+                  }
+                }
+
+                $('body').on('click', '.read-more', function() {
+                  var fullText = $(this).data('full-text');
+                  $('#modalFullText').text(fullText);
+                  $('#voiceInputModal').modal('show');
+                });
+              } else {
+                console.error('No data found.');
+              }
+            } else {
+              console.error('No data in the response:', response);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error('Request failed:', error);
+          }
+        });
+      }
+      fetchData();
+    });
+    document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+    });
+  </script>
+</body>
+</html>
