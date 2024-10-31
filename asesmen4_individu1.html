@@ -199,6 +199,17 @@
             </select>
         </div>
 
+         <div class="input-group mt-2" hidden>
+          <span class="input-group-text"><i class="fa fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="materi" name="Materi">
+            </select>
+         </div>
+
+        <div class="input-group mt-2" hidden>
+          <span class="input-group-text"><i class="fa fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="pertemuan" name="Pertemuan"></select>
+        </div>
+
         <div class="q1 mt-3" style="display:none;">
             <strong id="q1"></strong>
             <div class="input-group">
@@ -342,15 +353,59 @@
         </div>
         <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
     </div>
-</footer>
+</footer> 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 const API_KEY = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
 const SHEET_ID = '1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY';
-const RANGE_A = 'Task_Individu1!A2:A6';
-const RANGE_B = 'Task_Individu1!B2:B11';
+const RANGE_A = 'TI1!A2:A6';
+const RANGE_B = 'TI1!B2:B11';
+const KELAS = 'Setting!A2:A';
+const RANGE_ID_MATERI = 'Setting!C2';
+const RANGE_ID_PERTEMUAN = 'Setting!D2';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwZ1RBtMIujSmoVxoW9tVORmM4GLOzjXnaM3cr6JOSAnlQzr9DA9Ffs2pwlF8qKtDhERQ/exec'
+
+async function fetchPertemuanId() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_ID_PERTEMUAN}?key=${API_KEY}`);
+        const data = await response.json();
+        const pertemuanId = data.values ? data.values[0][0] : 'Pertemuan Tidak Ditemukan';
+
+        const pertemuanSelect = document.getElementById('pertemuan');
+        pertemuanSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `Pertemuan_${pertemuanId}`;
+        option.textContent = `Pertemuan_${pertemuanId}`;
+        pertemuanSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching pertemuan ID:', error);
+    }
+}
+
+async function fetchMateriData() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_ID_MATERI}?key=${API_KEY}`);
+        const data = await response.json();
+        const materiId = data.values ? data.values[0][0] : 'Materi Tidak Ditemukan';
+
+        const materiSelect = document.getElementById('materi');
+        materiSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `${materiId}`;
+        option.textContent = `${materiId}`;
+        materiSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching materi ID:', error);
+        }
+    }
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetchPertemuanId();
+    fetchMateriData();
+});
+
 async function fetchData() {
     const urlA = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_A}?key=${API_KEY}`;
     const responseA = await fetch(urlA);
@@ -427,7 +482,7 @@ function startRecording(answerId) {
 
 
 
- fetch('https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/SoalEvaluasi!C3:C?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4')
+ fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${KELAS}?key=${API_KEY}`)
         .then(response => response.json())
         .then(function(data) {
             const classDropdown = document.getElementById('kelas');
@@ -484,9 +539,8 @@ function startRecording(answerId) {
         }
     });
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwZ1RBtMIujSmoVxoW9tVORmM4GLOzjXnaM3cr6JOSAnlQzr9DA9Ffs2pwlF8qKtDhERQ/exec'
-const form = document.forms['google-sheet']
 
+const form = document.forms['google-sheet']
 const submitButton = document.querySelector('button[type="submit"]');
 const submitText = document.getElementById('submitText');
 const loadingIcon = document.getElementById('loadingIcon');
