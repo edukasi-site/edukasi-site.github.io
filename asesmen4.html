@@ -337,11 +337,21 @@
         <div class="form-group fade-up">
             <label for="studentName" class="text-white">Student Name</label>
             <input type="text" class="form-control fade-up" name="Nama" required>
-        </div>
+        </div> 
         <div class="form-group fade-up">
             <label for="studentClass" class="text-white">Class/Section</label>
             <select type="text" class="form-control fade-up" id="kelas" name="Kelas" required>
                 <option value="">Select class</option>
+            </select>
+        </div>
+         <div class="form-group fade-up" hidden>
+            <label for="unitClass" class="text-white">Unit</label>
+            <select type="text" class="form-control fade-up" id="unit" name="Unit" required>
+            </select>
+        </div>
+         <div class="form-group fade-up" hidden>
+            <label for="materiClass" class="text-white">Topik/Materi</label>
+            <select type="text" class="form-control fade-up" id="materi" name="Materi" required>
             </select>
         </div>
         <h4 class="fade-up">B. QUESTIONS</h4>
@@ -384,7 +394,52 @@
 <script>
 const API_KEY = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
 const SHEET_ID = '1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY';
-const RANGE = 'SoalEvaluasi!B3:B';
+const RANGE = 'SE!B3:B';
+const PASSWORD = 'SE!B1';
+const KELAS = 'Setting!A2:A';
+const RANGE_ID_UNIT = 'Setting!B2';
+const RANGE_ID_MATERI = 'Setting!C2';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwZ1RBtMIujSmoVxoW9tVORmM4GLOzjXnaM3cr6JOSAnlQzr9DA9Ffs2pwlF8qKtDhERQ/exec'
+
+ async function fetchUnitId() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_ID_UNIT}?key=${API_KEY}`);
+        const data = await response.json();
+        const unitId = data.values ? data.values[0][0] : 'Unit Tidak Ditemukan';
+
+        const unitSelect = document.getElementById('unit');
+        unitSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `Unit_${unitId}`;
+        option.textContent = `Unit_${unitId}`;
+        unitSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching unit ID:', error);
+        }
+    }
+
+
+  async function fetchMateriData() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE_ID_MATERI}?key=${API_KEY}`);
+        const data = await response.json();
+        const materiId = data.values ? data.values[0][0] : 'Materi Tidak Ditemukan';
+
+        const materiSelect = document.getElementById('materi');
+        materiSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `${materiId}`;
+        option.textContent = `${materiId}`;
+        materiSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching materi ID:', error);
+        }
+    }
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetchMateriData();
+    fetchUnitId();
+});
 
 function formatText(text) {
     const wordsToBold = ['keyword1', 'important', 'highlight'];
@@ -533,7 +588,7 @@ function toggleZoom(zoomIcon) {
   authForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const enteredPassword = document.getElementById('password').value;
-    fetch('https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/SoalEvaluasi!B1?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4')
+    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${PASSWORD}?key=${API_KEY}`)
     .then(response => response.json())
     .then(function(data) {
         const sheetPassword = data.values ? data.values[0][0] : '';
@@ -549,7 +604,7 @@ function toggleZoom(zoomIcon) {
         console.error('Error fetching the password:', error);
      });
 
-     fetch('https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/SoalEvaluasi!C3:C?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4')
+     fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${KELAS}?key=${API_KEY}`)
         .then(response => response.json())
         .then(function(data) {
             const classDropdown = document.getElementById('kelas');
@@ -601,9 +656,7 @@ function toggleZoom(zoomIcon) {
     });
     document.addEventListener('fullscreenchange', updateBackgroundColor);
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwZ1RBtMIujSmoVxoW9tVORmM4GLOzjXnaM3cr6JOSAnlQzr9DA9Ffs2pwlF8qKtDhERQ/exec'
 const form = document.forms['google-sheet']
-
 const submitButton = document.querySelector('button[type="submit"]');
 const submitText = document.getElementById('submitText');
 const loadingIcon = document.getElementById('loadingIcon');
