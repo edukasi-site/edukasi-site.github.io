@@ -170,10 +170,13 @@
           <th style="width: 50px;">No.</th>
           <th style="width: 300px;">Nama</th>
           <th style="width: 100px;">Kelas</th>
+          <th style="width: 300px;">Materi</th>
+          <th style="width: 300px;">Pertemuan</th>
           <th style="width: 300px;">Voice Input</th>
           <th>Pronunciation</th>
           <th>Intonation</th>
           <th>Fluency</th>
+          <th>Total</th>
         </tr>
       </thead>
       <tbody id="tableBody">
@@ -226,70 +229,82 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     $(document).ready(function () {
-    var table = $('#individu3Table').DataTable({
-        responsive: {
-            details: {
-                type: 'column',
-                target: 0
-            }
-        },
-        columnDefs: [
-            {
-                className: 'dtr-control',
-                orderable: false,
-                targets: 0
-            },
-            {
-                targets: '_all',
-                className: 'nowrap'
-            }
-        ],
-        retrieve: true,
-        paging: true,
-        searching: true,
-        ordering: true
-    });
-
-    function fetchData() {
-        $.ajax({
-            url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/Individu3!A2:F?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                table.clear().draw();
-                if (data.values && data.values.length > 0) {
-                    let rowNumber = 1;
-                    data.values.forEach(function (row, index) {
-
-                        const nama = row[0] || ''; 
-                        const kelas = row[1] || ''; 
-                        const voiceInput = row[2] || ''; 
-                        const pronunciation = row[3] || ''; 
-                        const intonation = row[4] || ''; 
-                        const fluency = row[5] || ''; 
-
-                        table.row.add([
-                            '',                 
-                            rowNumber++,       
-                            nama,               
-                            kelas,           
-                            voiceInput,      
-                            pronunciation,    
-                            intonation,    
-                            fluency        
-                        ]).draw(false);
-                    });
-                } else {
-                    console.error('No data found in the specified range.');
+        var table = $('#individu3Table').DataTable({
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: 0
                 }
             },
-            error: function (error) {
-                console.error('Error fetching data from Google Sheets:', error);
-            }
+            columnDefs: [
+                {
+                    className: 'dtr-control',
+                    orderable: false,
+                    targets: 0
+                },
+                {
+                    targets: '_all',
+                    className: 'nowrap'
+                }
+            ],
+            retrieve: true,
+            paging: true,
+            searching: true,
+            ordering: true
         });
-    }
-    fetchData();
-});
+
+        function fetchData() {
+            $.ajax({
+                url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/RI3!A2:I?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    table.clear().draw();
+                    if (data.values && data.values.length > 0) {
+                        let rowNumber = 1;
+                        data.values.forEach(function (row, index) {
+                            const nama = row[0] || ''; 
+                            const kelas = row[1] || '';
+                            const materi = row[2] || '';
+                            const pertemuan = row[3] || ''; 
+                            const voiceInput = row[4] || ''; 
+                            const pronunciation = row[5] || ''; 
+                            const intonation = row[6] || ''; 
+                            const fluency = row[7] || '';
+                            const total = parseFloat(row[8]) || 0;
+
+                            const pronunciationFormatted = pronunciation < 80 ? `<span style="color: red;">${pronunciation}</span>` : pronunciation;
+                            const intonationFormatted = intonation < 80 ? `<span style="color: red;">${intonation}</span>` : intonation;
+                            const fluencyFormatted = fluency < 80 ? `<span style="color: red;">${fluency}</span>` : fluency;
+
+                            const totalFormatted = total < 240 ? `<span style="color: red;">${total}</span>` : total;
+
+                            table.row.add([
+                                '',               
+                                rowNumber++,    
+                                nama, 
+                                kelas,
+                                materi,
+                                pertemuan,
+                                voiceInput,
+                                pronunciationFormatted,
+                                intonationFormatted,
+                                fluencyFormatted,
+                                totalFormatted 
+                            ]).draw(false);
+                        });
+                    } else {
+                        console.error('No data found in the specified range.');
+                    }
+                },
+                error: function (error) {
+                    console.error('Error fetching data from Google Sheets:', error);
+                }
+            });
+        }
+
+        fetchData();
+    });
 </script>
 </body>
 </html>
