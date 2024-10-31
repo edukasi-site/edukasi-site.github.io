@@ -494,15 +494,15 @@
         <img src="https://c.tenor.com/CET7_oDPD5MAAAAC/tenor.gif" alt="Slide 4" id="img4" class="img-fluid">
         <h2 class="text-center" id="judul4"></h2>
      <div class="text-size-controls" style="text-align: center; margin-top: 10px;">
-        <button class="btn btn-outline-primary" onclick="changeFontSize('materi', 1)">
+        <button class="btn btn-outline-primary" onclick="changeFontSize2(['materiKolom1', 'materiKolom2'], 1)">
             <i class="fas fa-plus"></i> Zoom in
         </button>
-        <button class="btn btn-outline-secondary" onclick="changeFontSize('materi', -1)">
+        <button class="btn btn-outline-secondary" onclick="changeFontSize2(['materiKolom1', 'materiKolom2'], -1)">
             <i class="fas fa-minus"></i> Zoom out
         </button>
       </div>
         <hr class="bg-primary">
-        <div class="row" id="materi">
+        <div class="row">
        
        <div class="col-md-6">
             <div id="materiKolom1" class="text-justify"></div> 
@@ -658,6 +658,16 @@ function changeFontSize(elementId, change) {
     element.style.fontSize = (currentSize + change) + 'px';
 }
 
+function changeFontSize2(elementIds, increment) {
+    elementIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            const currentFontSize = window.getComputedStyle(element, null).getPropertyValue('font-size');
+            const newSize = parseFloat(currentFontSize) + increment;
+            element.style.fontSize = newSize + 'px';
+        }
+    });
+}
 async function fetchData(range) {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
     try {
