@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -185,9 +185,11 @@
       <thead>
         <tr>
           <th></th>
-          <th style="width: 50px;">No.</th>
+          <th style="width: 10px;">No.</th>
           <th>Nama Siswa</th>
           <th>Kelas</th>
+          <th>Materi</th>
+          <th>Pertemuan</th>
           <th>Skor</th>
           <th>Answer1</th>
           <th>Answer2</th>
@@ -253,7 +255,7 @@
 
   function fetchData() {
     $.ajax({
-      url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/Individu1!A3:H?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+      url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/RI1!A3:J?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
       method: 'GET',
       dataType: 'json',
       success: function(response) {
@@ -266,9 +268,9 @@
             var row = [];
             row.push('');
             row.push(nomorUrut++);
-            for (var j = 0; j < 8; j++) {
+            for (var j = 0; j < 10; j++) {
               var cellContent = rows[i][j] || '';
-              if (j === 2) {
+              if (j === 4) {
                 var skor = parseFloat(cellContent);
                 if (!isNaN(skor)) {
                   if (skor < 80) {
