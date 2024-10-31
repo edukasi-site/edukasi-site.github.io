@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEin25mTTiwnesyB_ZHINQ61M1B0NkCtcuLl3uBUHOG47AJ9LPmBFMncKt1qxmhsJkOSy-FgYIoXvsh3MtA38vxuXjjE9D7xa72R3eyCIbibxw4UkMSfCaafEBMK7BrBpMyCSJpnh1NW6VSQlUkKrCHeKaH3mr-kbuFNPWJG30RtpLghTPrkRpiayh8bu6E/s320/header.png"/>
+    <title>TEACHING MATERIALS - ASESMEN</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        ::-webkit-scrollbar {
+             display: none;}
+        .hidden {
+          display: none !important;
+        }
+        .navbar-nav {
+           display: flex;
+           flex-direction: row;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+        .container {
+         width: 100%;
+         max-width: 1200px;
+        }
+
+        .content {
+            margin-top: 100px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        .footer .social-icons {
+            margin: 5px 0;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 15px;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #17a2b8;
+            transform: scale(1.2);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        #improvementSuggestions, #assessmentResults {
+            line-height: 5px;
+        }
+        .text-size-controls button{
+          font-size: 8px;
+          color: #000;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .modal-dialog {
+            max-width: 280px;
+            margin-top: 150px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-down {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-down.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        @media (max-width: 576px) {
+         .navbar-collapse {
+            display: flex !important;
+            justify-content: center;
+            font-size: 14px;
+          }
+         .navbar-nav {
+            justify-content: center;
+            margin-right: 28px;
+          }
+         .content {
+            margin-top: 85px;
+            margin-bottom: 30px;
+        }
+        .modal-dialog {
+              max-width: 100%;
+              margin-top: 150px;
+            }
+
+            .modal-body img {
+                width: 100%;
+                height: auto;
+          }
+         .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+         }
+         #brand, #fullscreenBtn{
+          display: none;
+        }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbarNav">
+    <div class="container-fluid">
+        <a class="navbar-brand text-center mx-auto" href="#" id="brand">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 40px; height: 40px; margin-right: 8px; border-radius: 10px;" data-toggle="modal" data-target="#imageModal">
+             <span class="web-font" style="font-size: 1.2rem;"><b>TEACHING MATERIALS</b></span>
+        </a>
+        <button id="fullscreenBtn" class="btn btn-dark" style="border: none; margin-left: 15px;">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="main4.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="presentasi4.html">
+                        <i class="fas fa-file-powerpoint"></i> Presentasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="asesmen4.html">
+                        <i class="fas fa-file"></i> Asesmen
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal for Image Popup -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Teacher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcI5UWeoJOmYLIGY0HlujtDbk_q9I2RrqWWIowVEhhQHJHOPues0tAUi8uLxjMSfPKkonqqxKnjbwIogGgaIAobIQC2NHpyGqT3SbTaZpWwZKX_KSLr2niLDHsQzuIiRRUnL_kUXKe8dgTC-Kcfqlm-XHBZqC-yfCn5hh9VJvdAJG37KGi8u-Eq0T4aM0/s1600/ukin.PNG" alt="Logo" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+        <h2 class="text-left fade-up">Asesmen Kolaborasi</h2>
+      <div class="text-size-controls" style="text-align: center; margin-top: 10px;">
+        <button class="btn btn-outline-primary" onclick="changeFontSize('main', 1)">
+            <i class="fas fa-plus"></i> Zoom in
+        </button>
+        <button class="btn btn-outline-secondary" onclick="changeFontSize('main', -1)">
+            <i class="fas fa-minus"></i> Zoom out
+        </button>
+      </div>
+        <hr class="bg-primary">
+        
+        <div class="main" id="main">
+        <h5 class="text-left">1. Tujuan</h5>
+        <p id="tujuan"></p>
+        
+        <h5>2. Kegiatan</h5>
+        <p id="kegiatan"></p> 
+
+        <h5>3. Penilaian</h5>
+        <p id="kriteria"></p>
+       </div>
+      </div>
+    <a href="asesmen4.html" class="btn btn-danger fade-up">Go Back</a>
+</div>
+<br><br><br>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/c/JNCEdukasi1987" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <p>&copy; 2022 Peke, S.Pd. All rights reserved.</p>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+function changeFontSize(elementId, change) {
+    const element = document.getElementById(elementId);
+    const style = window.getComputedStyle(element, null).getPropertyValue('font-size');
+    const currentSize = parseFloat(style);
+    element.style.fontSize = (currentSize + change) + 'px';
+}
+
+const API_KEY = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+const SHEET_ID = '1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY';
+const SHEET_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Kolaborasi!A2:B?key=${API_KEY}`;
+
+function fetchData() {
+    $.ajax({
+        url: SHEET_URL,
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if (response.values) {
+                var data = response.values;
+                var tujuan = data[0][0];
+                var formattedText = tujuan.replace("tebal", "<b>tebal</b>");
+                $('#tujuan').html(formattedText);
+
+                var kriteria = data[2][0];
+                var formattedText = kriteria.replace("tebal", "<b>tebal</b>");
+                $('#kriteria').html(formattedText);
+
+                var kegiatanList = '';
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i][1]) {
+                        let content = data[i][1];
+                    
+                        if (content.match(/\.(jpeg|jpg|gif|png)$/) != null) {
+                            kegiatanList += `<img src="${content}" style="max-width: 100%; height: 350px;margin-top:10px"><br>`;
+                        } 
+                        else if (content.length == 11 && /^[a-zA-Z0-9_-]{11}$/.test(content)) {
+                            kegiatanList += `<br><iframe width="560" height="315" src="https://www.youtube.com/embed/${content}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>`;
+                        } 
+                        else {
+                            kegiatanList += `${content}<br>`;
+                        }
+                    }
+                }
+                $('#kegiatan').html(kegiatanList);
+            } else {
+                console.error('No data in the response:', response);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+}
+
+$(document).ready(function() {
+    fetchData();
+});
+
+
+     document.addEventListener('DOMContentLoaded', function() {
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimation() {
+            const fadeElementsUp = document.querySelectorAll('.fade-up');
+            const fadeElementsDown = document.querySelectorAll('.fade-down');
+
+            fadeElementsUp.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+
+            fadeElementsDown.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('show');
+                } else {
+                    element.classList.remove('show');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        handleScrollAnimation();
+    });
+
+    let isFullscreen = false;
+    const navbar = document.getElementById('navbarNav');
+    const footer = document.getElementById('footer');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!isFullscreen) {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            navbar.classList.add('hidden');
+            footer.classList.add('hidden');
+            isFullscreen = true;
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; // Ganti ikon ke "compress"
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari dan Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            navbar.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            isFullscreen = false;
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>'; // Ganti ikon kembali ke "expand"
+        }
+    });
+    let isReading = false;
+    let speech;
+    
+
+    function startReading() {
+        let textToRead = document.getElementById('bacaan-text').innerText;
+        speech = new SpeechSynthesisUtterance(textToRead);
+        speech.lang = 'en-US'; 
+        window.speechSynthesis.speak(speech);
+    }
+    function stopReading() {
+        window.speechSynthesis.cancel(); 
+    }
+
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
+</script>
+</body>
+</html>
