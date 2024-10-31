@@ -154,20 +154,12 @@
       <thead>
         <tr>
           <th></th>
-          <th>No.</th>
-          <th>Nama Siswa</th>
-          <th>Kelas</th>
-          <th>Skor</th>
-          <th>Ans1</th>
-          <th>Ans2</th>
-          <th>Ans3</th>
-          <th>Ans4</th>
-          <th>Ans5</th>
-          <th>Ans6</th>
-          <th>Ans7</th>
-          <th>Ans8</th>
-          <th>Ans9</th>
-          <th>Ans10</th>
+          <th style="width:5px">No.</th>
+          <th style="width:50px">Nama_Siswa</th>
+          <th style="width:10px">Kelas</th>
+          <th style="width:10px">Unit</th>
+          <th style="width:50px">Materi</th>
+          <th style="width:10px">Skor</th>
         </tr>
       </thead>
       <tbody id="tableBody">
@@ -228,7 +220,7 @@
 
      function fetchData() {
      $.ajax({
-        url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/Evaluasi!A3:M?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+        url: 'https://sheets.googleapis.com/v4/spreadsheets/1eWxntf89wsFflqQbO8Qkq5wuvT-C9GzpKIDALdXh6vY/values/RE!A3:O?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
         method: 'GET',
         dataType: 'json',
         success: function(response) {
@@ -242,17 +234,19 @@
                     for (var i = 0; i < rows.length; i++) {
                         var studentName = rows[i][0];
                         var kelas = rows[i][1];
-                        var score = rows[i][2];
-                        var ans1 = rows[i][3];
-                        var ans2 = rows[i][4];
-                        var ans3 = rows[i][5];
-                        var ans4 = rows[i][6];
-                        var ans5 = rows[i][7];
-                        var ans6 = rows[i][8];
-                        var ans7 = rows[i][9];
-                        var ans8 = rows[i][10];
-                        var ans9 = rows[i][11];
-                        var ans10 = rows[i][12];
+                        var unit = rows[i][2];
+                        var materi = rows[i][3];
+                        var score = rows[i][4];
+                        var ans1 = rows[i][5];
+                        var ans2 = rows[i][6];
+                        var ans3 = rows[i][7];
+                        var ans4 = rows[i][8];
+                        var ans5 = rows[i][9];
+                        var ans6 = rows[i][10];
+                        var ans7 = rows[i][11];
+                        var ans8 = rows[i][12];
+                        var ans9 = rows[i][13];
+                        var ans10 = rows[i][14];
 
                         if (displayedNames.indexOf(studentName) === -1) {
                             displayedNames.push(studentName);
@@ -262,6 +256,8 @@
                             row.push(nomorUrut++);
                             row.push(studentName);
                             row.push(kelas);
+                            row.push(unit);
+                            row.push(materi);
                              if (parseFloat(score) >= 80) {
                                 row.push('<span style="color: green; font-weight: bold;">' + score + '</span>');
                             } else {
