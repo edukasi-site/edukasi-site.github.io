@@ -154,9 +154,10 @@
       <thead>
         <tr>
           <th></th>
-          <th>No.</th>
+          <th style="width:10px">No.</th>
           <th>Nama</th>
           <th>Kelas</th>
+          <th>Materi</th>
           <th>Refleksi 1</th>
           <th>Refleksi 2</th>
           <th>Refleksi 3</th>
@@ -219,7 +220,7 @@
 
       function fetchData() {
         $.ajax({
-          url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/Refleksi!A2:G?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+          url: 'https://sheets.googleapis.com/v4/spreadsheets/1iHOT12n9ecXe1lxe5tfnJEi29-H-dINmbDjqjhr5gH8/values/Refleksi!A2:H?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
           method: 'GET',
           dataType: 'json',
           success: function(response) {
@@ -232,7 +233,7 @@
                 var row = [];
                 row.push('');
                 row.push(nomorUrut++);
-                for (var j = 0; j < 7; j++) {
+                for (var j = 0; j < 8; j++) {
                   var cellContent = rows[i][j] || '';
                   row.push(cellContent);
                 }
