@@ -167,8 +167,11 @@
       <thead>
         <tr>
           <th></th>
-          <th>No.</th>
+          <th style="width: 10px;">No.</th>
           <th>Nama</th>
+          <th>Kelas</th>
+          <th>Materi</th>
+          <th>Pertemuan</th>
           <th>Voice Input</th>
           <th>Fluency</th>
           <th>Intonation</th>
@@ -255,7 +258,7 @@
       var displayedNames = [];
       function fetchData() {
         $.ajax({
-          url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/Individu2!A2:H?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+          url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/RI2!A2:K?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
           method: 'GET',
           dataType: 'json',
           success: function(response) {
@@ -274,21 +277,15 @@
                     var row = [];
                     row.push('');
                     row.push(nomorUrut++);
-                    for (var j = 0; j < 8; j++) {
+                    for (var j = 0; j < 11; j++) {
                       var cellContent = rows[i][j] || '';
-                      if (j === 1) {
+                      if (j === 10) {
                         if (cellContent.length > 10) {
                           cellContent = cellContent.substring(0, 10) + '... <span class="read-more" data-full-text="' + cellContent + '">More</span>';
                         }
                       }
 
-                      if (j === 7) {
-                        if (cellContent.length > 10) {
-                          cellContent = cellContent.substring(0, 10) + '... <span class="read-more" data-full-text="' + cellContent + '">More</span>';
-                        }
-                      }
-
-                      if (j === 6) {
+                      if (j === 9) {
                         if (cellContent === "Belum Mencapai") {
                           row.push('<span class="belum-mencapai">' + cellContent + '</span>');
                         } else if (cellContent === "Sedang Mencapai") {
