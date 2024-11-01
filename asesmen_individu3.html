@@ -167,7 +167,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="main.html">
+                    <a class="nav-link" href="index.html">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
@@ -225,7 +225,7 @@
               <span class="input-group-text"><i class="fas fa-pen"></i></span>
               <input type="text" class="form-control fade-up" name="studentName" placeholder="Type your name here ..." required>
             </div>
-           </div>
+           </div> 
 
             <div class="form-group fade-up">
             <label for="kelas"><b><i class="fa fa-chalkboard-teacher"></i> Class/Section</b></label>
@@ -236,6 +236,17 @@
               </select>
             </div>
            </div>
+
+        <div class="input-group mt-2" hidden>
+          <span class="input-group-text"><i class="fa fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="materi" name="Materi">
+            </select>
+         </div>
+
+         <div class="input-group mt-2" hidden>
+          <span class="input-group-text"><i class="fa fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="pertemuan" name="Pertemuan"></select>
+         </div>
             
             <div class="form-group">
                 <label for="recordedText">Your spoken sentence:</label>
@@ -297,6 +308,54 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+const spreadsheetId = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s'; 
+const range = 'TI3!B2'; 
+const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+const KELAS = 'Setting!A2:A';
+const RANGE_ID_PERTEMUAN = 'Setting!D2';
+const RANGE_ID_MATERI = 'Setting!C2';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec';
+
+ async function fetchPertemuanId() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${RANGE_ID_PERTEMUAN}?key=${apiKey}`);
+        const data = await response.json();
+        const pertemuanId = data.values ? data.values[0][0] : 'Pertemuan Tidak Ditemukan';
+
+        const pertemuanSelect = document.getElementById('pertemuan');
+        pertemuanSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `Pertemuan_${pertemuanId}`;
+        option.textContent = `Pertemuan_${pertemuanId}`;
+        pertemuanSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching pertemuan ID:', error);
+        }
+    }
+
+    async function fetchMateriData() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${RANGE_ID_MATERI}?key=${apiKey}`);
+        const data = await response.json();
+        const materiId = data.values ? data.values[0][0] : 'Materi Tidak Ditemukan';
+
+        const materiSelect = document.getElementById('materi');
+        materiSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `${materiId}`;
+        option.textContent = `${materiId}`;
+        materiSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching materi ID:', error);
+        }
+    }
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetchPertemuanId();
+    fetchMateriData();
+});
+
+
 const startRecordingBtn = document.getElementById('startRecording');
 const statusMessage = document.getElementById('status');
 const sentenceText = document.getElementById('sentence');  // Fetch the sentence element
@@ -466,12 +525,7 @@ function enableSubmitButton() {
 
 
 async function fetchData() {
-    const spreadsheetId = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s'; 
-    const range = 'Task_Individu3!B2'; 
-    const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4'; 
-
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
-    
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -488,12 +542,7 @@ async function fetchData() {
 fetchData(); 
 
 async function fetchDropdownData() {
-    const spreadsheetId = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s'; 
-    const range = 'SoalEvaluasi!C3:C';
-    const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
-
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
-    
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${KELAS}?key=${apiKey}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -515,7 +564,6 @@ async function fetchDropdownData() {
 fetchDropdownData();
 
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec';
 const form = document.forms['google-sheet'];
 form.addEventListener('submit', e => {
     e.preventDefault();
