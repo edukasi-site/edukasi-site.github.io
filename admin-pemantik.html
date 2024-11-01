@@ -42,7 +42,7 @@
     }
     .container {
       flex: 1;
-      margin-bottom: -30px;
+      margin-bottom:5px;
       margin-top: 70px;
       width: 100%;
       max-width: 1400px;
@@ -156,6 +156,8 @@
           <th style="width: 50px;">No.</th>
           <th>Nama</th>
           <th>Kelas</th>
+          <th>Materi</th>
+          <th>Pertemuan</th>
           <th>Jawaban Pemantik</th>
         </tr>
       </thead>
@@ -216,7 +218,7 @@
 
       function fetchData() {
         $.ajax({
-          url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/Pemantik!A2:C?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
+          url: 'https://sheets.googleapis.com/v4/spreadsheets/1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s/values/Pemantik!A2:E?key=AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4',
           method: 'GET',
           dataType: 'json',
           success: function(response) {
@@ -229,7 +231,7 @@
                 var row = [];
                 row.push('');
                 row.push(nomorUrut++);
-                for (var j = 0; j < 3; j++) {
+                for (var j = 0; j < 5; j++) {
                   var cellContent = rows[i][j] || '';
                   row.push(cellContent);
                 }
