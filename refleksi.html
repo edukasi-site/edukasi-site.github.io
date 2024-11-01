@@ -140,7 +140,6 @@
     </style>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand text-center mx-auto" href="#" id="brand">
@@ -153,7 +152,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="main.html">
+                    <a class="nav-link" href="index.html">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
@@ -193,7 +192,7 @@
     <div class="content">
         <h2 class="text-left fade-up">Refleksi Pembelajaran</h2>
         <hr class="bg-primary fade-up">
-         <form name="google-sheet" action="https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec" method="POST" class="form">
+         <form name="google-sheet" action="https://script.google.com/macros/s/AKfycbwZ1RBtMIujSmoVxoW9tVORmM4GLOzjXnaM3cr6JOSAnlQzr9DA9Ffs2pwlF8qKtDhERQ/exec" method="POST" class="form">
         <input type="hidden" name="source" value="refleksi">
          <div class="form-group fade-up">
             <label for="name"><b><i class="fas fa-user"></i> Student Name</b></label>
@@ -202,6 +201,7 @@
             <input type="text" class="form-control fade-up" name="Nama" placeholder="Type your name here ..." required>
          </div>
        </div>
+
         <div class="form-group fade-up">
             <label for="kelas"><b><i class="fa fa-chalkboard-teacher"></i> Class/Section</b></label>
              <div class="input-group">
@@ -211,6 +211,11 @@
             </select>
          </div>
        </div>
+
+       <div class="input-group mt-2" hidden>
+          <span class="input-group-text"><i class="fa fa-list"></i></span>
+            <select type="text" class="form-control fade-up" id="materi" name="Materi"></select>
+      </div>
 
         <h5 class="text-left fade-up mt-3">1. Tingkat Pemahaman Materi</h5>
         <p class="fade-up mb-4">Seberapa baik Anda memahami materi ini?</p>
@@ -302,37 +307,38 @@
         if (!isFullscreen) {
             if (document.documentElement.requestFullscreen) {
                 document.documentElement.requestFullscreen();
-            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+            } else if (document.documentElement.mozRequestFullScreen) {
                 document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            } else if (document.documentElement.webkitRequestFullscreen) {
                 document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+            } else if (document.documentElement.msRequestFullscreen) {
                 document.documentElement.msRequestFullscreen();
             }
             isFullscreen = true;
-            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; // Change icon to compress
+            fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) { // Firefox
+            } else if (document.mozCancelFullScreen) {
                 document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+            } else if (document.webkitExitFullscreen) {
                 document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { // IE/Edge
+            } else if (document.msExitFullscreen) {
                 document.msExitFullscreen();
             }
             isFullscreen = false;
-            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>'; // Change icon back to expand
+            fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>'; 
         }
     });
 
-async function fetchDropdownData() {
-    const spreadsheetId = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s'; 
-    const range = 'SoalEvaluasi!C3:C';
-    const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
 
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
-    
+const spreadsheetId = '1tJIHioS5pNGUNgMf32qIzO4l-_fwtWjHzOBTyGkg-3s'; 
+const KELAS = 'Setting!A2:A';
+const RANGE_ID_MATERI = 'Setting!C2';
+const apiKey = 'AIzaSyC2Z8Hy9qnRawbID0RP7HWXHJR76uJamZ4';
+
+async function fetchDropdownData() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${KELAS}?key=${apiKey}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -351,11 +357,32 @@ async function fetchDropdownData() {
         console.error('Error fetching data from Google Sheets:', error);
     }
 }
-fetchDropdownData();
+
+async function fetchMateriData() {
+    try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${RANGE_ID_MATERI}?key=${apiKey}`);
+        const data = await response.json();
+        const materiId = data.values ? data.values[0][0] : 'Materi Tidak Ditemukan';
+
+        const materiSelect = document.getElementById('materi');
+        materiSelect.innerHTML = '';
+        const option = document.createElement('option');
+        option.value = `${materiId}`;
+        option.textContent = `${materiId}`;
+        materiSelect.appendChild(option);
+    } catch (error) {
+        console.error('Error fetching materi ID:', error);
+        }
+    }
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetchDropdownData();
+    fetchMateriData();
+});
+
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwX0mYUKDDrU7JjFdmghS0FuLIkof6GlaQK34M3w74AmH0cKEUIvtD2MzqJrrtf3jCc/exec'
 const form = document.forms['google-sheet']
-
 const submitButton = document.querySelector('button[type="submit"]');
 const submitText = document.getElementById('submitText');
 const loadingIcon = document.getElementById('loadingIcon');
@@ -425,9 +452,7 @@ document.addEventListener('DOMContentLoaded', function() {
         handleScrollAnimation();
     });
 
- document.addEventListener("contextmenu", function(event) {
-    event.preventDefault();
-});
+
 </script>
 </body>
 </html>
