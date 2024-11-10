@@ -321,6 +321,12 @@
         </div>
         <br>
 
+        <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="acceptTerms">
+      <label class="form-check-label" for="acceptTerms">I would like to submit my answers.</label>
+      </div>
+      <br>
+
         <a href="individu.html" class="btn btn-secondary">Go Back</a>
         <button type="submit" name="simpan" class="btn btn-primary">
             <span id="submitText">Submit Answer</span>
@@ -540,11 +546,25 @@ function startRecording(answerId) {
     });
 
 
-const form = document.forms['google-sheet']
+const form = document.forms['google-sheet'];
 const submitButton = document.querySelector('button[type="submit"]');
 const submitText = document.getElementById('submitText');
 const loadingIcon = document.getElementById('loadingIcon');
 
+function checkTextareas() {
+    const textareas = form.querySelectorAll('textarea');
+    let isFilled = false;
+
+    textareas.forEach(textarea => {
+        if (textarea.closest('.q1') && textarea.value.trim() !== '') {
+            isFilled = true;
+        }
+    });
+    submitButton.disabled = !isFilled;
+}
+
+document.addEventListener('DOMContentLoaded', checkTextareas);
+form.addEventListener('input', checkTextareas);
 form.addEventListener('submit', e => {
     e.preventDefault();
     submitText.style.display = 'none';
@@ -572,8 +592,8 @@ form.addEventListener('submit', e => {
         .finally(() => {
             submitText.style.display = 'inline';
             loadingIcon.style.display = 'none';
-        });
-   });
+    });
+});
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
